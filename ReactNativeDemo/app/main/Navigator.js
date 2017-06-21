@@ -25,6 +25,7 @@ import  TabBarItem from '../main/TabBarItem'
 import MineDetailPage from '../mine/MineDetail'
 
 
+
 export  default  class Navigator extends  Component{
 
     render(){
@@ -107,6 +108,11 @@ const AppNavigator = StackNavigator({
         },
 
     },
+
+    Register:{
+        screen: Register,
+
+    }
 
 });
 

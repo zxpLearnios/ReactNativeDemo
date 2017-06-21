@@ -22,13 +22,24 @@ import {
 
 
 
-let font_size =  16;
+// let font_size =  16;
+// let font_color = '#333333';
+// let margin = 15; // 输入框居左
+// let subViewH = 40;
+// let leftTextWidth = 50; // '手机号' 文字的宽度
+// let top = 20; // 三个输入框top间距
+// let topViewH = 210 - 2*top;
+
+
+let font_size =  15;
 let font_color = '#333333';
-let margin = 15; // 输入框居左
-let subViewH = 40;
+let font_orangeCl = '#FF5A00';
+let protocolColor = '#999999';
+let margin = 10; // 输入框居左
 let leftTextWidth = 50; // '手机号' 文字的宽度
 let top = 20; // 三个输入框top间距
 let topViewH = 210 - 2*top;
+
 
 
 import  OrangeButton from  './OrangeBtn'
@@ -48,11 +59,11 @@ export default  class MineDetail extends  Component{
         phoneHint: '请输入手机号码',
         verCodeHint: '请输入验证码',
         pwdHint: '密码须含有数字和字母，6-20位',
-    }
+    };
 
     static constGlobal1=function () {
         return MineDetail.prototype.props.constGlobal;
-    }
+    };
 
 
     keyboardState = {
@@ -61,7 +72,7 @@ export default  class MineDetail extends  Component{
         // keyboardVerticalOffset: 64,
         underlineColorAndroid: 'transparent',
         // keyboardShouldPersistTaps: 'handle', // 已无此属性了
-    }
+    };
 
 
     phoneInputState = {
@@ -73,13 +84,13 @@ export default  class MineDetail extends  Component{
         underlineColorAndroid: 'transparent' // 在安卓上的下划线颜色
         // enablesReturnKeyAutomatically: true, // 如果为true，键盘会在文本框内没有文字的时候禁用确认按钮。默认值为false。
         // returnKeyType：'', // 决定返回键的样式
-    }
+    };
 
     pwdInputState={
         // keyboardType: '',
         maxLength: 20,
         clearButtonMode: 'while-editing', //  清除按钮出现的时机
-    }
+    };
 
     // 数据
     data = {
@@ -93,9 +104,7 @@ export default  class MineDetail extends  Component{
         super(props);
 
         this.state = {
-            // phone: '',
-            // verCode: '',
-            // pwd: '',
+            pwdVisiable: false,
         }
 
 
@@ -143,7 +152,7 @@ export default  class MineDetail extends  Component{
                                     <Text  style={styles.phoneText} >手机号</Text>
 
                                     <TextInput
-                                        placeholder='请输入手机号'
+                                        placeholder={this.constGlobal.phoneHint}
                                         keyboardType={this.phoneInputState.keyboardType}
                                         underlineColorAndroid={this.phoneInputState.underlineColorAndroid}
                                         maxLength={this.phoneInputState.maxLength}
@@ -152,7 +161,9 @@ export default  class MineDetail extends  Component{
                                         onChangeText={phone => this.handlePhoneFieldChange(phone)}
                                     />
 
-                                    <TimerBtn  ref={timer => this.timer = timer} style={styles.timerBtn}>
+                                    <TimerBtn  ref={timer => this.timer = timer}
+                                               // style={styles.timerBtn}
+                                    >
 
                                     </TimerBtn>
 
@@ -164,6 +175,7 @@ export default  class MineDetail extends  Component{
                                     <TextInput
                                         placeholder={this.constGlobal.verCodeHint}
                                         keyboardType={this.phoneInputState.keyboardType}
+                                        underlineColorAndroid={this.phoneInputState.underlineColorAndroid}
                                         maxLength={6}
                                         clearButtonMode={this.phoneInputState.clearButtonMode}
                                         style={styles.verCodeInput}
@@ -180,7 +192,7 @@ export default  class MineDetail extends  Component{
                                         underlineColorAndroid={this.phoneInputState.underlineColorAndroid}
                                         keyboardType={this.pwdInputState.keyboardType}
                                         maxLength={this.pwdInputState.maxLength}
-                                        // secureTextEntry={this.state.visiablePwd}
+                                        secureTextEntry={!this.state.pwdVisiable}
                                         clearButtonMode={this.phoneInputState.clearButtonMode}
                                         style={styles.pwdInput}
                                         onChangeText={pwd => this.handlePwdFieldChange(pwd)}
@@ -269,6 +281,7 @@ export default  class MineDetail extends  Component{
     handlePhoneFieldChange (phone){
         this.data.phone = phone;
 
+        console.log('手机号是'+this.data.phone);
         // 手机号不为空时，才可以点击验证码按钮
         if (this.data.phone.length != 0){
             this.timer.setDisable(false);
@@ -290,6 +303,7 @@ export default  class MineDetail extends  Component{
         if (this.data.pwd.length != 0){
             this.eyeBtn.setDisable(false);
         }else {
+
             this.eyeBtn.setDisable(true);
         }
 
@@ -320,9 +334,11 @@ export default  class MineDetail extends  Component{
 
     };
 
+    // 密码可见按钮的点击
     eyeBtnAction = () => {
-
-
+        this.setState({
+            pwdVisiable: !this.state.pwdVisiable,
+        });
 
     };
 
@@ -354,7 +370,7 @@ export default  class MineDetail extends  Component{
         // this.hud.open();
 
         // 测试定时器按钮，这样可以的话，则说明网络请求成功后，外部即可使其开始了
-        this.timer.startAction();
+        // this.timer.startAction();
 
         // for (item in this.refs) {
         //     if (item.typeName == 'TextInpuit'){
@@ -380,7 +396,7 @@ export default  class MineDetail extends  Component{
 const styles = StyleSheet.create({
 
     mainContainer:{
-        flex:1, // flex 即自己在父view的主轴方向上的伸缩系数, 若已经设置了高度则宽度可以不设置（会自动占满其余部分）
+        flex:1,
         backgroundColor: 'white',
     },
 
@@ -390,108 +406,94 @@ const styles = StyleSheet.create({
     },
 
     topView: {
-
         height: topViewH,
-        // backgroundColor: '#544399',
-
-        // flexDirection: 'column', // row column 决定布局的主轴(默认为竖直轴)
-        // justifyContent: 'space-around', // 子view在主轴的布局
         alignItems: 'center', //  子view在次轴的布局
         margin: 20,
-        marginTop: 100,
+        marginTop: 50,
     },
-
-
-
-    keyBoardView:{
-        flex: 1,
-    },
-
 
     timerBtn:{
+
         marginLeft: 10,
         marginRight: 0,
     },
 
     phoneView:{
         flex: 1,
-        // backgroundColor: 'red',
+        // backgroundColor: 'gray',
         borderBottomWidth: 1,
-        borderBottomColor: 'gray',
+        borderBottomColor: font_color,
         flexDirection: 'row',
-        // justifyContent: 'center', // 子view在主轴的布局
-        // alignSelf: 'center', // 决定自己在父view的次轴方向的布局 alignSelf属性相当于将父容器的alignItems属性进行了覆盖。
+        alignItems: 'center',
     },
 
     verCodeView:{
         flex: 1,
         marginTop: top,
         borderBottomWidth: 1,
-        borderBottomColor: 'gray',
+        borderBottomColor: font_color,
         flexDirection: 'row',
+        alignItems: 'center',
     },
 
     pwdView:{
         flex: 1,
         marginTop: top,
         borderBottomWidth: 1,
-        borderBottomColor: 'gray',
+        borderBottomColor: font_color,
         flexDirection: 'row',
+        alignItems: 'center',
     },
 
 
     phoneText:{
-
-        // backgroundColor: 'gray',
-        // color: font_color,
+        color: font_color,
         fontSize: font_size,
-        alignSelf: 'center',
         width: leftTextWidth,
     },
 
     verCodeText:{
+        color: font_color,
         fontSize: font_size,
-        alignSelf: 'center',
         width: leftTextWidth,
     },
 
     pwdText:{
+        color: font_color,
         fontSize: font_size,
-        alignSelf: 'center',
         width: leftTextWidth,
     },
 
     phoneInput:{
         flex: 1,
-        height: 20,
-        // backgroundColor: 'gray',
+        color: font_color,
         fontSize: font_size,
         marginLeft: margin,
-        alignSelf: 'center',
+        // textAlign: 'center',
     },
 
     verCodeInput:{
         flex: 1,
-
-        height: 20,
+        color: font_color,
         fontSize: font_size,
         marginLeft: margin,
-        alignSelf: 'center',
 
     },
 
     pwdInput:{
-        flex: 1,  // flex 即自己在父view的主轴方向上的伸缩系数, 若已经设置了高度则宽度可以不设置（会自动占满其余部分）
-        // backgroundColor: 'red',
-        height: 20,
+        flex: 1,
+        color: font_color,
         fontSize: font_size,
         marginLeft: margin,
-        alignSelf: 'center',
+    },
+
+    verCodeBtn:{
+        width: 90,
+        height: 40,
     },
 
     // ------   注册 因为topview的margin=20 ----//
     centeView:{
-        // backgroundColor: 'orange',
         top: 20,
         height: 70,
         justifyContent: 'center',
@@ -504,27 +506,28 @@ const styles = StyleSheet.create({
 
     protocolView:{
         height: 20,
-        marginTop: 15,
+        top: 15,
         flexDirection: 'row',
         justifyContent: 'center',
     },
 
     protocolText:{
+        color: protocolColor,
         fontSize: 14,
         alignSelf: 'center',
     },
 
     // 底部
     bottomView:{
-        // backgroundColor: 'white',
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginTop: conster.height * (150/667),
         height: 20,
+        marginTop: 600 * (150/667),
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
 
     haveAccountText:{
+        color: protocolColor,
         fontSize: 14,
     },
 
