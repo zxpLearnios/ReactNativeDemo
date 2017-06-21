@@ -3,7 +3,7 @@
  */
 // 眼睛按钮
 
-import  React, {Component, PropTypes} from 'react';
+import  React, {Component} from 'react';
 
 import {
     TouchableWithoutFeedback,
@@ -14,7 +14,11 @@ import {
 
 }from 'react-native';
 
-
+import {
+    string,
+    number,
+    func,
+}from 'prop-types'
 
 
 // uri - 是一个表示图片的资源标识的字符串，它可以是一个http地址或是一个本地文件路径（使用require(相对路径)来引用）。
@@ -41,7 +45,7 @@ let selectImg = require('../img/icon_tabbar_mine.png');
 export  default class  EyeBtn extends  Component{
 
     static propTypes={
-        onPress: PropTypes.func,
+        onPress: func,
         cliclkCallBack: () => {},
     }
 

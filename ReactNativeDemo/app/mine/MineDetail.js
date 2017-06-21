@@ -120,15 +120,16 @@ export default  class MineDetail extends  Component{
             <View style={styles.mainContainer}>
 
                 <ScrollView
-                    keyboardDismissMode='on-drag'
+                    // keyboardDismissMode='on-drag'
                 >
                     <View style={styles.contentView}>
                         <TouchableOpacity activeOpacity={1.0} onPress={this.dismissKeyboardClick.bind(this)} />
 
 
                         <KeyboardAvoidingView
-                            behavior = {this.keyboardState.behavior}
-                            keyboardVerticalOffset = {this.keyboardState.keyboardVerticalOffset}>
+                            // behavior = {this.keyboardState.behavior}
+                            // keyboardVerticalOffset = {this.keyboardState.keyboardVerticalOffset}
+                        >
 
 
 
@@ -142,7 +143,7 @@ export default  class MineDetail extends  Component{
                                     <Text  style={styles.phoneText} >手机号</Text>
 
                                     <TextInput
-                                        placeholder={this.constGlobal.phoneHint}
+                                        placeholder='请输入手机号'
                                         keyboardType={this.phoneInputState.keyboardType}
                                         underlineColorAndroid={this.phoneInputState.underlineColorAndroid}
                                         maxLength={this.phoneInputState.maxLength}

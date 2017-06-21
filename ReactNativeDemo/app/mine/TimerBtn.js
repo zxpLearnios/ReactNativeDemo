@@ -4,7 +4,7 @@
 // 验证码按钮
 
 
-import  React, {Component, PropTypes} from 'react';
+import  React, {Component} from 'react';
 
 import {
     TouchableWithoutFeedback,
@@ -26,9 +26,9 @@ let defaultTotalCount = 9;
 * */
 export default class  TimerBtn extends  Component{
 
-    static propTypes = {
+    // static propTypes = {
     // title:  PropTypes.string,
-    titleColor: PropTypes.string,
+    // titleColor: PropTypes.string,
     // fontSize: PropTypes.number,
     // clickAction: PropTypes.func,
     //
@@ -36,10 +36,10 @@ export default class  TimerBtn extends  Component{
     // defaultBg: Text.propTypes.backgroundColor,
     // disableBg: Text.propTypes.backgroundColor;
     //     ...,
-    };
+    // };
 
 
-    defaultProps = {
+    textStyle = {
         color: 'orange',
         fontSize: 16 || this.props.fontSize, // 这样可以给属性默认值
 
@@ -69,7 +69,7 @@ export default class  TimerBtn extends  Component{
             >
                 {/* 如此设置后，则外部设置的CaptureBtn布局就会应用到此view上面 */}
                 <View  style={[styles.container, this.props.style]} >
-                    <Text style={this.defaultProps} >{isRunning? this.state.totalCount + 's': defaultTitle}</Text>
+                    <Text style={this.textStyle} >{isRunning? this.state.totalCount + 's': defaultTitle}</Text>
                 </View>
 
             </TouchableWithoutFeedback>
