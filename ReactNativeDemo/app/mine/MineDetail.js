@@ -161,8 +161,10 @@ export default  class MineDetail extends  Component{
                                         onChangeText={phone => this.handlePhoneFieldChange(phone)}
                                     />
 
+                                    {/*定时器、倒计时按钮*/}
                                     <TimerBtn  ref={timer => this.timer = timer}
-                                               // style={styles.timerBtn}
+                                               onPress={this.verCodeBtnACtion}
+                                               style={styles.timerBtn}
                                     >
 
                                     </TimerBtn>
@@ -342,6 +344,19 @@ export default  class MineDetail extends  Component{
 
     };
 
+    verCodeBtnACtion = () => {
+
+        // 延迟，模拟获取验证码的过程
+        this.delayTimer = setInterval( () => {
+            // 测试定时器按钮，这样可以的话，则说明网络请求成功后，外部即可使其开始了
+            this.timer.setIsStart(true);
+
+            // 清除延时
+            clearTimeout(this.delayTimer);
+        }, 1000*3);
+
+
+    }
 
     registAction(){
         alert('手机号是：' +this.data.phone + '  验证码是：' + this.data.verCode + '  密码是：'+ this.data.pwd);
@@ -369,8 +384,6 @@ export default  class MineDetail extends  Component{
 
         // this.hud.open();
 
-        // 测试定时器按钮，这样可以的话，则说明网络请求成功后，外部即可使其开始了
-        // this.timer.startAction();
 
         // for (item in this.refs) {
         //     if (item.typeName == 'TextInpuit'){

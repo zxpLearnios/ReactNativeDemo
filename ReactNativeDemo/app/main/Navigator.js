@@ -109,10 +109,6 @@ const AppNavigator = StackNavigator({
 
     },
 
-    Register:{
-        screen: Register,
-
-    }
 
 });
 
