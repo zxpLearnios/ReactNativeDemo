@@ -2,8 +2,7 @@
  * Created by jingnanzhang on 2017/6/6.
  */
 
-import  React, {
-    PropTypes, Component} from 'react';
+import  React, {Component} from 'react';
 
 import {
     TouchableWithoutFeedback,
@@ -15,19 +14,18 @@ import {
 
 export  default  class OrangeBtn extends  Component{
 
-    static propTypes = {
-        // title: PropTypes.string,
-        // titleColor: PropTypes.string,
-        // fontSize: PropTypes.number,
-        // ...Text.props, // 则外部设置 OrangeBtn的color属性时，就相当于是设置了 OrangeBtn里面的Text的color
-
-        textStyles: Text.propTypes.style, // 则外部设置 OrangeBtn的textStyles{{}}里面写字典形式，则自动设置给OrangeBtn里面的Text了
-    };
+    // static propTypes = {
+    //     // title: PropTypes.string,
+    //     // titleColor: PropTypes.string,
+    //     // fontSize: PropTypes.number,
+    //     // ...Text.props, // 则外部设置 OrangeBtn的color属性时，就相当于是设置了 OrangeBtn里面的Text的color
+    //
+    //     textStyles: Text.propTypes.style, // 则外部设置 OrangeBtn的textStyles{{}}里面写字典形式，则自动设置给OrangeBtn里面的Text了
+    // };
 
 
     constructor(props){
         super(props);
-
 
     }
 

@@ -11,7 +11,7 @@ import {
 }from 'react-native';
 
 // import MineDetailPage from './MineDetail'
-import MyReactView from './MyReactView'
+import MyReactView from '../nativeComponents/MyReactView'
 
 export default class  Mine extends  Component{
     render(){
@@ -29,10 +29,10 @@ export default class  Mine extends  Component{
                     }
                 />
 
-                <MyReactView
-                    ref={testNativeView => this.testNativeView = testNativeView}
-                       style={styles.reactView}
-                />
+                {/*<MyReactView*/}
+                    {/*ref={testNativeView => this.testNativeView = testNativeView}*/}
+                       {/*style={styles.reactView}*/}
+                {/*/>*/}
 
             </View>
 

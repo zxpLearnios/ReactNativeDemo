@@ -9,26 +9,13 @@ import {
     TextInput,
     KeyboardAvoidingView,
     StyleSheet,
-    Dimensions,
     TouchableOpacity,
     ScrollView,
-    Button,
     Alert,
-    TouchableWithoutFeedback,
 
 
 }from 'react-native';
 
-
-
-
-// let font_size =  16;
-// let font_color = '#333333';
-// let margin = 15; // 输入框居左
-// let subViewH = 40;
-// let leftTextWidth = 50; // '手机号' 文字的宽度
-// let top = 20; // 三个输入框top间距
-// let topViewH = 210 - 2*top;
 
 
 let font_size =  15;
@@ -40,14 +27,13 @@ let leftTextWidth = 50; // '手机号' 文字的宽度
 let top = 20; // 三个输入框top间距
 let topViewH = 210 - 2*top;
 
-
-
-import  OrangeButton from  './OrangeBtn'
-import  LoginBtn from  './LoginBtn'
-import TimerBtn from  './TimerBtn'
-import EyeBtn from  './EyeBtn'
-import  Hud from  './MyHUD'
-
+import {
+    OrangeBtn,
+    LoginBtn,
+    EyeBtn,
+    TimerBtn,
+    Hud,
+}from '../customeComponents/customeComponents'
 
 import  * as conster from  '../const/Const'
 
@@ -225,7 +211,7 @@ export default  class MineDetail extends  Component{
                                     <Text style={styles.protocolText}>注册即代表同意《</Text>
 
 
-                                    <OrangeButton title='Q易借服务协议'
+                                    <OrangeBtn title='Q易借服务协议'
                                                   onPress= {this.protocolClickAction}/>
 
                                     <Text style={styles.protocolText}>》</Text>
@@ -237,10 +223,10 @@ export default  class MineDetail extends  Component{
                             <View style={styles.bottomView}>
                                 <Text style={styles.haveAccountText}>已有账号？</Text>
 
-                                <OrangeButton title='直接登录'
+                                <OrangeBtn title='直接登录'
                                               onPress= {this.loginAction} >
 
-                                </OrangeButton>
+                                </OrangeBtn>
 
                             </View>
 
@@ -533,7 +519,7 @@ const styles = StyleSheet.create({
     // 底部
     bottomView:{
         height: 20,
-        marginTop: 600 * (150/667),
+        marginTop: conster.height * (150/667),
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
