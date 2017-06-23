@@ -16,7 +16,6 @@ import {
 
 import {
     string,
-    number,
     func,
 }from 'prop-types'
 
@@ -44,10 +43,15 @@ let selectImg = require('../img/icon_tabbar_mine.png');
 
 export  default class  EyeBtn extends  Component{
 
-    static propTypes={
-        onPress: func,
-        cliclkCallBack: () => {},
-    }
+    // static propTypes={
+    //     onPress: func,
+        // cliclkCallBack: () => {},
+        // number:PropTypes.oneOfType( // 多类型检测
+        //     [PropTypes.string,PropTypes.number]
+        // )
+
+        // requeiP: PropTypes.string.isRequired, // 必须的属性，外部无之则报错
+    // }
 
     container = {
         justifyContent: 'center',
@@ -103,8 +107,8 @@ export  default class  EyeBtn extends  Component{
         });
 
         // 注意这2种方法的区别
-        // this.props.cliclkCallBack() && this.props.cliclkCallBack;
-        EyeBtn.propTypes.cliclkCallBack && this.props.cliclkCallBack(); // 执行外部的方法
+        this.props.cliclkCallBack() && this.props.cliclkCallBack;
+        // EyeBtn.propTypes.cliclkCallBack && this.props.cliclkCallBack(); // 执行外部的方法
     }
 
 

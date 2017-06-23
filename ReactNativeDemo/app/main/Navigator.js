@@ -23,7 +23,7 @@ import  TabBarItem from '../main/TabBarItem'
 
 
 import MineDetailPage from '../mine/MineDetail'
-
+import TestListViewPage from '../mine/TestListView'
 
 
 export  default  class Navigator extends  Component{
@@ -108,6 +108,11 @@ const AppNavigator = StackNavigator({
         },
 
     },
+
+    TestListView:{
+        screen: TestListViewPage,
+
+    }
 
 
 });

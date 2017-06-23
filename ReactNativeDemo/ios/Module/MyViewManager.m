@@ -41,8 +41,6 @@ RCT_EXPORT_METHOD(doSomething:(NSString *)testStr resolver:(RCTResponseSenderBlo
 
 -(UIView *)view{
   
-//  UIView *v = [[UIView alloc] init];
-//  v.backgroundColor = [UIColor redColor];
     MyView *v = [[MyView alloc] init];
   return v;
 }

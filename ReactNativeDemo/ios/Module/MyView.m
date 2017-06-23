@@ -16,16 +16,17 @@
   if (!self) {
     self = [super init];
     
-    [self addViews];
+    
   }
   return self;
 }
 
-
-
--(void)awakeFromNib{
-  [super awakeFromNib];
+-(void)drawRect:(CGRect)rect{
+  [super drawRect:rect];
   
+  if (self.subviews.count == 0) {
+    [self addViews];
+  }
 }
 
 -(void)addViews{

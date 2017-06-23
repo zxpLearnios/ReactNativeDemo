@@ -151,9 +151,8 @@ export default  class MineDetail extends  Component{
                                     <TimerBtn  ref={timer => this.timer = timer}
                                                onPress={this.verCodeBtnACtion}
                                                style={styles.timerBtn}
-                                    >
+                                    />
 
-                                    </TimerBtn>
 
                                 </View>
 
@@ -202,9 +201,7 @@ export default  class MineDetail extends  Component{
                                <LoginBtn
                                     ref={loginBtn => this.loginBtn = loginBtn}
                                     title="立即注册"
-                                    onPress={this.registAction.bind(this)}>
-
-                                </LoginBtn>
+                                    onPress={this.registAction.bind(this)} />
 
 
                                 <View style={styles.protocolView}>
@@ -224,9 +221,7 @@ export default  class MineDetail extends  Component{
                                 <Text style={styles.haveAccountText}>已有账号？</Text>
 
                                 <OrangeBtn title='直接登录'
-                                              onPress= {this.loginAction} >
-
-                                </OrangeBtn>
+                                              onPress= {this.loginAction} />
 
                             </View>
 
@@ -303,20 +298,8 @@ export default  class MineDetail extends  Component{
     updateRegisteBtnState = function () {
 
         if (this.data.phone.length != 0 && this.data.verCode.length != 0 && this.data.pwd.length != 0){
-
-
-            // 1. 不会触发render，使有动画时的效果更好
-            // this.loginBtn.setNativeProps({
-            //     style: {disabled: false},
-            // })
-
-            // 2. 调用loginBtn的setState方法，会触发render
             this.loginBtn.setDisable(false);
         }else {
-            // this.loginBtn.setNativeProps({
-            //     style: {disabled: true},
-            // })
-
             this.loginBtn.setDisable(true);
         }
 
@@ -335,7 +318,7 @@ export default  class MineDetail extends  Component{
         // 延迟，模拟获取验证码的过程
         this.delayTimer = setInterval( () => {
             // 测试定时器按钮，这样可以的话，则说明网络请求成功后，外部即可使其开始了
-            this.timer.setIsStart(true);
+            this.timer.setStart();
 
             // 清除延时
             clearTimeout(this.delayTimer);

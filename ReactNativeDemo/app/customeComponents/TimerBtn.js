@@ -101,12 +101,8 @@ export default class  TimerBtn extends  Component{
     };
 
     // 2.外部调用
-    setIsStart =(bl) => {
-
-        if (bl){
-            this.countDown();
-        }
-
+    setStart =() => {
+        this.countDown();
     }
 
     // 内部方法。 是否开始倒计时

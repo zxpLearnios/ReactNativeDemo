@@ -48723,6 +48723,10 @@ var _MineDetail = require(469                 ); // 469 = ../mine/MineDetail
 
 var _MineDetail2 = babelHelpers.interopRequireDefault(_MineDetail);
 
+var _TestListView = require(478                   ); // 478 = ../mine/TestListView
+
+var _TestListView2 = babelHelpers.interopRequireDefault(_TestListView);
+
 var Navigator = function (_Component) {
     babelHelpers.inherits(Navigator, _Component);
 
@@ -48760,8 +48764,8 @@ var AppTab = (0, _reactNavigation.TabNavigator)({
                 return _react2.default.createElement(_TabBarItem2.default, {
                     tintColor: tintColor,
                     focused: focused,
-                    normalImage: require(478                          ), // 478 = ../img/icon_tabbar_misc.png
-                    selectedImage: require(479                                   ), // 479 = ../img/icon_tabbar_misc_selected.png
+                    normalImage: require(479                          ), // 479 = ../img/icon_tabbar_misc.png
+                    selectedImage: require(480                                   ), // 480 = ../img/icon_tabbar_misc_selected.png
                     __source: {
                         fileName: _jsxFileName,
                         lineNumber: 45
@@ -48804,7 +48808,7 @@ var AppTab = (0, _reactNavigation.TabNavigator)({
     animationEnabled: false,
     lazy: true,
 
-    initialRouteName: 'HomePage',
+    initialRouteName: 'MinePage',
     backBehavior: 'none'
 });
 
@@ -48821,6 +48825,11 @@ var AppNavigator = (0, _reactNavigation.StackNavigator)({
             headerTitle: '我的详情',
             headerBackTitle: '返回我的'
         }
+
+    },
+
+    TestListView: {
+        screen: _TestListView2.default
 
     }
 
@@ -56036,10 +56045,25 @@ var Mine = function (_Component) {
     }
 
     babelHelpers.createClass(Mine, [{
+        key: 'getDatas',
+        value: function getDatas() {
+            var title = '';
+            var smallAry = [];
+
+            for (var i = 0; i < 3; i++) {
+                for (var j = 0; j < 3; j++) {
+                    title = '第' + i + "组" + '第' + j + "行";
+                    smallAry.push(title);
+                    console.log(title);
+                }
+                bigAry = bigAry.concat(smallAry);
+                smallAry.shift();
+            }
+            return bigAry;
+        }
+    }, {
         key: 'render',
         value: function render() {
-            var _this2 = this;
-
             var navigate = this.props.navigation.navigate;
 
 
@@ -56048,27 +56072,17 @@ var Mine = function (_Component) {
                 {
                     __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 22
+                        lineNumber: 40
                     }
                 },
                 _react2.default.createElement(_reactNative.Button, {
                     title: '\u8DF3\u8F6C',
                     onPress: function onPress() {
-                        return navigate('MineDetail', { name: '传给其他页面' });
+                        return navigate('TestListView', { name: '传给其他页面' });
                     },
                     __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 24
-                    }
-                }),
-                _react2.default.createElement(_MyReactView2.default, {
-                    ref: function ref(testNativeView) {
-                        return _this2.testNativeView = testNativeView;
-                    },
-                    style: styles.reactView,
-                    __source: {
-                        fileName: _jsxFileName,
-                        lineNumber: 32
+                        lineNumber: 42
                     }
                 })
             );
@@ -56199,7 +56213,7 @@ var MineDetail = function (_Component) {
                 _reactNative.View,
                 { style: styles.mainContainer, __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 114
+                        lineNumber: 115
                     }
                 },
                 _react2.default.createElement(
@@ -56207,19 +56221,19 @@ var MineDetail = function (_Component) {
                     {
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 116
+                            lineNumber: 117
                         }
                     },
                     _react2.default.createElement(
                         _reactNative.View,
                         { style: styles.contentView, __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 119
+                                lineNumber: 120
                             }
                         },
-                        _react2.default.createElement(TouchableOpacity, { activeOpacity: 1.0, onPress: _this.dismissKeyboardClick.bind(_this), __source: {
+                        _react2.default.createElement(_reactNative.TouchableOpacity, { activeOpacity: 1.0, onPress: _this.dismissKeyboardClick.bind(_this), __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 120
+                                lineNumber: 121
                             }
                         }),
                         _react2.default.createElement(
@@ -56227,28 +56241,28 @@ var MineDetail = function (_Component) {
                             {
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 123
+                                    lineNumber: 124
                                 }
                             },
                             _react2.default.createElement(
                                 _reactNative.View,
                                 { style: styles.topView, __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 131
+                                        lineNumber: 132
                                     }
                                 },
                                 _react2.default.createElement(
                                     _reactNative.View,
                                     { style: styles.phoneView, __source: {
                                             fileName: _jsxFileName,
-                                            lineNumber: 136
+                                            lineNumber: 137
                                         }
                                     },
                                     _react2.default.createElement(
                                         _reactNative.Text,
                                         { style: styles.phoneText, __source: {
                                                 fileName: _jsxFileName,
-                                                lineNumber: 137
+                                                lineNumber: 138
                                             }
                                         },
                                         '\u624B\u673A\u53F7'
@@ -56265,7 +56279,7 @@ var MineDetail = function (_Component) {
                                         },
                                         __source: {
                                             fileName: _jsxFileName,
-                                            lineNumber: 139
+                                            lineNumber: 140
                                         }
                                     }),
                                     _react2.default.createElement(_customeComponents.TimerBtn, { ref: function ref(timer) {
@@ -56275,7 +56289,7 @@ var MineDetail = function (_Component) {
                                         style: styles.timerBtn,
                                         __source: {
                                             fileName: _jsxFileName,
-                                            lineNumber: 150
+                                            lineNumber: 151
                                         }
                                     })
                                 ),
@@ -56376,14 +56390,14 @@ var MineDetail = function (_Component) {
                                     _reactNative.View,
                                     { style: styles.protocolView, __source: {
                                             fileName: _jsxFileName,
-                                            lineNumber: 209
+                                            lineNumber: 207
                                         }
                                     },
                                     _react2.default.createElement(
                                         _reactNative.Text,
                                         { style: styles.protocolText, __source: {
                                                 fileName: _jsxFileName,
-                                                lineNumber: 210
+                                                lineNumber: 208
                                             }
                                         },
                                         '\u6CE8\u518C\u5373\u4EE3\u8868\u540C\u610F\u300A'
@@ -56391,14 +56405,14 @@ var MineDetail = function (_Component) {
                                     _react2.default.createElement(_customeComponents.OrangeBtn, { title: 'Q\u6613\u501F\u670D\u52A1\u534F\u8BAE',
                                         onPress: _this.protocolClickAction, __source: {
                                             fileName: _jsxFileName,
-                                            lineNumber: 213
+                                            lineNumber: 211
                                         }
                                     }),
                                     _react2.default.createElement(
                                         _reactNative.Text,
                                         { style: styles.protocolText, __source: {
                                                 fileName: _jsxFileName,
-                                                lineNumber: 216
+                                                lineNumber: 214
                                             }
                                         },
                                         '\u300B'
@@ -56409,14 +56423,14 @@ var MineDetail = function (_Component) {
                                 _reactNative.View,
                                 { style: styles.bottomView, __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 222
+                                        lineNumber: 220
                                     }
                                 },
                                 _react2.default.createElement(
                                     _reactNative.Text,
                                     { style: styles.haveAccountText, __source: {
                                             fileName: _jsxFileName,
-                                            lineNumber: 223
+                                            lineNumber: 221
                                         }
                                     },
                                     '\u5DF2\u6709\u8D26\u53F7\uFF1F'
@@ -56424,7 +56438,7 @@ var MineDetail = function (_Component) {
                                 _react2.default.createElement(_customeComponents.OrangeBtn, { title: '\u76F4\u63A5\u767B\u5F55',
                                     onPress: _this.loginAction, __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 225
+                                        lineNumber: 223
                                     }
                                 })
                             )
@@ -56440,7 +56454,6 @@ var MineDetail = function (_Component) {
             if (this.data.phone.length != 0 && this.data.verCode.length != 0 && this.data.pwd.length != 0) {
                 this.loginBtn.setDisable(false);
             } else {
-
                 this.loginBtn.setDisable(true);
             }
         };
@@ -56453,7 +56466,7 @@ var MineDetail = function (_Component) {
 
         _this.verCodeBtnACtion = function () {
             _this.delayTimer = setInterval(function () {
-                _this.timer.setIsStart(true);
+                _this.timer.setStart();
 
                 clearTimeout(_this.delayTimer);
             }, 1000 * 3);
@@ -56490,7 +56503,7 @@ var MineDetail = function (_Component) {
                     return _this2.hud = hud;
                 }, text: '\u8FD9\u662F\u63D0\u793A\u5185\u5BB9\uFF0C\u8FD9\u662F\u63D0\u793A\u5185\u5BB9\u8FD9\u8FD9\u662F\u63D0\u793A-------\u5185\u5BB9\u8FD9\u662F\u63D0\u793A\u5185\u5BB9', __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 256
+                    lineNumber: 252
                 }
             });
         }
@@ -56755,21 +56768,21 @@ var OrangeBtn = function (_Component) {
                 _reactNative.TouchableWithoutFeedback,
                 { onPress: this.props.onPress, __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 43
+                        lineNumber: 41
                     }
                 },
                 _react2.default.createElement(
                     _reactNative.View,
                     { style: [styles.container, this.props.style], __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 45
+                            lineNumber: 43
                         }
                     },
                     _react2.default.createElement(
                         _reactNative.Text,
                         { style: [this.textStyle, this.props.textStyles], __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 52
+                                lineNumber: 50
                             }
                         },
                         this.props.title
@@ -56781,9 +56794,6 @@ var OrangeBtn = function (_Component) {
     return OrangeBtn;
 }(_react.Component);
 
-OrangeBtn.propTypes = {
-
-    textStyles: _reactNative.Text.propTypes.style };
 exports.default = OrangeBtn;
 
 
@@ -56860,21 +56870,21 @@ var LoginBtn = function (_Component) {
                     onPress: this.feedbackStyle.onPress,
                     __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 76
+                        lineNumber: 75
                     }
                 },
                 _react2.default.createElement(
                     _reactNative.View,
                     { backgroundColor: this.state.disabled ? 'red' : 'green', style: [this.container, this.props.style], __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 83
+                            lineNumber: 82
                         }
                     },
                     _react2.default.createElement(
                         _reactNative.Text,
                         { style: this.registBtnStyle, __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 84
+                                lineNumber: 83
                             }
                         },
                         this.props.title
@@ -56926,11 +56936,8 @@ var TimerBtn = function (_Component) {
             });
         };
 
-        _this.setIsStart = function (bl) {
-
-            if (bl) {
-                _this.countDown();
-            }
+        _this.setStart = function () {
+            _this.countDown();
         };
 
         _this.countDown = function () {
@@ -57107,14 +57114,14 @@ var MyHUD = function (_Component) {
                     transparent: true,
                     visible: this.state.visiable, __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 66
+                        lineNumber: 65
                     }
                 },
                 _react2.default.createElement(
                     _reactNative.TouchableWithoutFeedback,
                     { onPress: this.dismiss, __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 71
+                            lineNumber: 70
                         }
                     },
                     _react2.default.createElement(
@@ -57125,7 +57132,7 @@ var MyHUD = function (_Component) {
                             },
                             style: [styles.container, this.props.style], __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 73
+                                lineNumber: 72
                             }
                         },
                         _react2.default.createElement(
@@ -57134,49 +57141,49 @@ var MyHUD = function (_Component) {
                                 onStartShouldSetResponder: this.onStartShouldSetResponder,
                                 style: styles.contentView, __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 77
+                                    lineNumber: 76
                                 }
                             },
                             _react2.default.createElement(
                                 _reactNative.Text,
                                 { style: [this.textStyle, this.props.textStyles], __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 82
+                                        lineNumber: 81
                                     }
                                 },
                                 this.props.text
                             ),
                             _react2.default.createElement(_reactNative.View, { style: styles.horizontalSep, __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 87
+                                    lineNumber: 86
                                 }
                             }),
                             _react2.default.createElement(
                                 _reactNative.View,
                                 { style: styles.bottomView, __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 90
+                                        lineNumber: 89
                                     }
                                 },
                                 _react2.default.createElement(
                                     _reactNative.View,
                                     { style: styles.btnContainer, __source: {
                                             fileName: _jsxFileName,
-                                            lineNumber: 93
+                                            lineNumber: 92
                                         }
                                     },
                                     _react2.default.createElement(
                                         _reactNative.TouchableWithoutFeedback,
                                         { onPress: this.sureAction, __source: {
                                                 fileName: _jsxFileName,
-                                                lineNumber: 97
+                                                lineNumber: 96
                                             }
                                         },
                                         _react2.default.createElement(
                                             _reactNative.View,
                                             { style: styles.sureView, __source: {
                                                     fileName: _jsxFileName,
-                                                    lineNumber: 98
+                                                    lineNumber: 97
                                                 }
                                             },
                                             _react2.default.createElement(
@@ -57184,7 +57191,7 @@ var MyHUD = function (_Component) {
                                                 {
                                                     style: styles.sureText, __source: {
                                                         fileName: _jsxFileName,
-                                                        lineNumber: 99
+                                                        lineNumber: 98
                                                     }
                                                 },
                                                 '\u786E\u5B9A'
@@ -57195,14 +57202,14 @@ var MyHUD = function (_Component) {
                                         _reactNative.TouchableWithoutFeedback,
                                         { onPress: this.cancleAction, __source: {
                                                 fileName: _jsxFileName,
-                                                lineNumber: 106
+                                                lineNumber: 105
                                             }
                                         },
                                         _react2.default.createElement(
                                             _reactNative.View,
                                             { style: styles.cancleView, __source: {
                                                     fileName: _jsxFileName,
-                                                    lineNumber: 107
+                                                    lineNumber: 106
                                                 }
                                             },
                                             _react2.default.createElement(
@@ -57210,7 +57217,7 @@ var MyHUD = function (_Component) {
                                                 {
                                                     style: styles.cancleText, __source: {
                                                         fileName: _jsxFileName,
-                                                        lineNumber: 108
+                                                        lineNumber: 107
                                                     }
                                                 },
                                                 '\u53D6\u6D88'
@@ -57221,7 +57228,7 @@ var MyHUD = function (_Component) {
                             ),
                             _react2.default.createElement(_reactNative.View, { style: styles.verticalSep, __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 118
+                                    lineNumber: 117
                                 }
                             })
                         )
@@ -57345,7 +57352,7 @@ var EyeBtn = function (_Component) {
                 isDefaultImg: !_this.state.isDefaultImg
             });
 
-            EyeBtn.propTypes.cliclkCallBack && _this.props.cliclkCallBack();
+            _this.props.cliclkCallBack() && _this.props.cliclkCallBack;
         };
 
         _this.setDisable = function (bl) {
@@ -57371,21 +57378,21 @@ var EyeBtn = function (_Component) {
                     disabled: this.state.disabled,
                     onPress: this.clickAction.bind(this), __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 77
+                        lineNumber: 81
                     }
                 },
                 _react2.default.createElement(
                     _reactNative.View,
                     { style: this.container, __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 82
+                            lineNumber: 86
                         }
                     },
                     _react2.default.createElement(_reactNative.Image, {
                         source: this.state.isDefaultImg ? defaultImg : selectImg,
                         style: styles.imgStyle, __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 84
+                            lineNumber: 88
                         }
                     })
                 )
@@ -57395,10 +57402,6 @@ var EyeBtn = function (_Component) {
     return EyeBtn;
 }(_react.Component);
 
-EyeBtn.propTypes = {
-    onPress: _propTypes.func,
-    cliclkCallBack: function cliclkCallBack() {}
-};
 exports.default = EyeBtn;
 
 
@@ -57415,10 +57418,197 @@ __d(/* ReactNativeDemo/app/img/icon_tabbar_mine_selected.png */function(global, 
 }, 476, null, "ReactNativeDemo/app/img/icon_tabbar_mine_selected.png");
 __d(/* ReactNativeDemo/app/img/icon_tabbar_mine.png */function(global, require, module, exports) {module.exports=require(258                                         ).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/app/img","width":52,"height":52,"scales":[1],"hash":"466d9eaeb35cd52987c5e2acb4179f93","name":"icon_tabbar_mine","type":"png"}); // 258 = react-native/Libraries/Image/AssetRegistry
 }, 477, null, "ReactNativeDemo/app/img/icon_tabbar_mine.png");
+__d(/* ReactNativeDemo/app/mine/TestListView.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var _jsxFileName = '/Users/jingnanzhang/Desktop/ReactNativeDemo/ReactNativeDemo/app/mine/TestListView.js';
+
+var _react = require(12     ); // 12 = react
+
+var _react2 = babelHelpers.interopRequireDefault(_react);
+
+var _reactNative = require(26            ); // 26 = react-native
+
+var bigAry = [];
+
+var TestListView = function (_Component) {
+    babelHelpers.inherits(TestListView, _Component);
+    babelHelpers.createClass(TestListView, [{
+        key: 'getDatas',
+        value: function getDatas() {
+            var title = '';
+            var smallAry = [];
+
+            for (var i = 0; i < 3; i++) {
+                for (var j = 0; j < 3; j++) {
+                    title = '第' + i + "组" + '第' + j + "行";
+                    smallAry.push(title);
+                    console.log(title);
+                }
+                bigAry.concat(smallAry);
+                smallAry.shift();
+            }
+            return bigAry;
+        }
+    }]);
+
+    function TestListView(props) {
+        babelHelpers.classCallCheck(this, TestListView);
+
+        var _this = babelHelpers.possibleConstructorReturn(this, (TestListView.__proto__ || Object.getPrototypeOf(TestListView)).call(this, props));
+
+        _this.datas = {
+            rowDatas: ['这是ListView的Cell', '这是ListView的Cell', '这是ListView的Cell'],
+            sectionDatas: _this.getDatas() };
+
+        _this._renderSep = function () {
+            return _react2.default.createElement(_reactNative.View, { style: styles.separator, __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 82
+                }
+            });
+        };
+
+        _this.clickItem = function (rowData, sectionId, rowId) {
+            alert('点击了：' + sectionId + '组,' + rowId + '行，' + '内容：' + rowData);
+        };
+
+        var ds = new _reactNative.ListView.DataSource({
+            rowHasChanged: function rowHasChanged(r1, r2) {
+                return r1 !== r2;
+            },
+            sectionHeaderHasChanged: function sectionHeaderHasChanged(s1, s2) {
+                return s1 !== s2;
+            }
+        });
+
+        _this.state = {
+            dataSource: ds.cloneWithRowsAndSections(_this.datas.sectionDatas) };
+
+        alert(bigAry.length);
+        return _this;
+    }
+
+    babelHelpers.createClass(TestListView, [{
+        key: 'render',
+        value: function render() {
+            var _this2 = this;
+
+            return _react2.default.createElement(_reactNative.ListView, {
+                dataSource: this.state.dataSource,
+
+                renderRow: function renderRow(rowData, sectionId, rowId) {
+                    return _this2._renderItems(rowData, sectionId, rowId);
+                },
+                renderSeparator: this._renderSep,
+                renderSectionHeader: function renderSectionHeader(sectionData, sectionId) {
+                    return _this2._renderSectionHeader(sectionData, sectionId);
+                },
+                __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 67
+                }
+            });
+        }
+    }, {
+        key: '_renderSectionHeader',
+        value: function _renderSectionHeader(sectionData, sectionId) {
+            return _react2.default.createElement(
+                _reactNative.View,
+                { style: styles.sectionHeader, __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 87
+                    }
+                },
+                _react2.default.createElement(
+                    _reactNative.Text,
+                    { style: styles.sectionText, __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 88
+                        }
+                    },
+                    '第' + sectionId + '组'
+                )
+            );
+        }
+    }, {
+        key: '_renderItems',
+        value: function _renderItems(rowData, sectionId, rowId) {
+            var _this3 = this;
+
+            return _react2.default.createElement(
+                _reactNative.TouchableOpacity,
+                { activeOpacity: 0.7, onPress: function onPress() {
+                        return _this3.clickItem(rowData, sectionId, rowId);
+                    }, __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 97
+                    }
+                },
+                _react2.default.createElement(
+                    _reactNative.View,
+                    { style: styles.container, __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 98
+                        }
+                    },
+                    _react2.default.createElement(
+                        _reactNative.Text,
+                        { style: styles.text, __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 99
+                            }
+                        },
+                        rowData
+                    )
+                )
+            );
+        }
+    }]);
+    return TestListView;
+}(_react.Component);
+
+exports.default = TestListView;
+
+var styles = _reactNative.StyleSheet.create({
+
+    separator: {
+        backgroundColor: '#d5d5d5',
+        height: 10
+    },
+
+    sectionHeader: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#ffb6c1'
+    },
+
+    sectionText: {
+        color: '#333333',
+        fontSize: 20,
+        marginTop: 10,
+        marginBottom: 10
+    },
+
+    container: {
+        height: 50,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'white',
+        flexDirection: 'row'
+    },
+
+    text: {
+        color: '#333333',
+        fontSize: 16
+    }
+
+});
+}, 478, null, "ReactNativeDemo/app/mine/TestListView.js");
 __d(/* ReactNativeDemo/app/img/icon_tabbar_misc.png */function(global, require, module, exports) {module.exports=require(258                                         ).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/app/img","width":52,"height":52,"scales":[1],"hash":"2112672398b668818990a6a91d1b0f33","name":"icon_tabbar_misc","type":"png"}); // 258 = react-native/Libraries/Image/AssetRegistry
-}, 478, null, "ReactNativeDemo/app/img/icon_tabbar_misc.png");
+}, 479, null, "ReactNativeDemo/app/img/icon_tabbar_misc.png");
 __d(/* ReactNativeDemo/app/img/icon_tabbar_misc_selected.png */function(global, require, module, exports) {module.exports=require(258                                         ).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/app/img","width":52,"height":52,"scales":[1],"hash":"2869d756113c32f6d0805d9f4f0cffbb","name":"icon_tabbar_misc_selected","type":"png"}); // 258 = react-native/Libraries/Image/AssetRegistry
-}, 479, null, "ReactNativeDemo/app/img/icon_tabbar_misc_selected.png");
+}, 480, null, "ReactNativeDemo/app/img/icon_tabbar_misc_selected.png");
 ;require(128);
 ;require(0);
 //# sourceMappingURL=index.ios.map

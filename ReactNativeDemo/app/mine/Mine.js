@@ -14,6 +14,10 @@ import {
 import MyReactView from '../nativeComponents/MyReactView'
 
 export default class  Mine extends  Component{
+
+
+
+
     render(){
 
         const { navigate } = this.props.navigation;
@@ -25,7 +29,7 @@ export default class  Mine extends  Component{
                     title="跳转"
                     onPress={() =>
                         // this.btnAction
-                        navigate('MineDetail', { name: '传给其他页面' })
+                        navigate('TestListView', { name: '传给其他页面' }) // TestListView   MineDetail
                     }
                 />
 
