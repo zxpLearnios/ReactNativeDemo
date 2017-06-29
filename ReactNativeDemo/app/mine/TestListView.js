@@ -12,24 +12,33 @@ import {
     TouchableOpacity,
     TouchableHighlight,
 
+
+    RefreshControl,
+    ActivityIndicator,
+
 }from 'react-native';
 
+let isFirst = true; // 是否是首次
+let runNumber = 1; // 循环几次
+
+
+// row的更新策略
+var ds = new ListView.DataSource({
+    rowHasChanged: (r1, r2) => r1 !== r2,
+    sectionHeaderHasChanged: (s1, s2) => s1 !== s2,
+});
 
 // 如果不想在滑动过快导致白屏出现，就只能使用 ListView 。而不能使用SectionList 和 FlatList
 export  default  class  TestListView extends  Component{
 
-    staticDatas={
-        rowDatas: ['这是ListView的Cell', '这是ListView的Cell', '这是ListView的Cell'],
-        sectionDatas: this.getDatas(), // [['第一组第0行', '第一组第1行', '第一组第2行'], ['第二组第0行', '第二组第1行', '第二组第2行']],
-    }
-
     // 返回一个二维数组，数据源
-     getDatas(){
+    getDatas(){
+
          let title = '';
          let bigAry = [];
          let smallAry = [];
 
-         for (var i=0; i<2; i++){
+         for (var i=0; i<runNumber; i++){
              for (let j=0; j<5; j++){
                  title = '第'+i+"组"+'第'+j+"行";
                  smallAry.push(title)
@@ -40,6 +49,11 @@ export  default  class  TestListView extends  Component{
          return bigAry;
     }
 
+    staticDatas={
+        rowDatas: ['这是ListView的Cell', '这是ListView的Cell', '这是ListView的Cell'],
+        sectionDatas: this.getDatas(), // [['第一组第0行', '第一组第1行', '第一组第2行'], ['第二组第0行', '第二组第1行', '第二组第2行']],
+    }
+
     /**
      * { sectionID_1: { rowID_1: rowData1, ... }, ... }
      { sectionID_1: [ rowData1, rowData2, ... ], ... }
@@ -47,28 +61,49 @@ export  default  class  TestListView extends  Component{
      * */
     constructor(props) {
         super(props);
-        // row的更新策略
-        var ds = new ListView.DataSource({
-            rowHasChanged: (r1, r2) => r1 !== r2,
-            sectionHeaderHasChanged: (s1, s2) => s1 !== s2,
-        });
 
         this.state = {
-            dataSource: ds.cloneWithRowsAndSections(this.staticDatas.sectionDatas), //ds.cloneWithRows(this.datas.rowDatas),
+            dataSource: ds.cloneWithRowsAndSections(this.getDatas()), //ds.cloneWithRows(this.staticDatas.rowDatas),
+            title: '下拉开始刷新',
+            isRefreshing: true, // 开始即刷新下
+            isLoadMoreData: false,
+            isNoMoreData: false,
         };
+
+        // 只执行一次，立即执行
+        setImmediate(() => {
+            this.setState({
+                isRefreshing: false,
+            })
+        }, 1000)
+
+
 
     }
 
 
 
     render() {
+
         return (
             <ListView
+
+                onScroll={(scroller) => this._onScroll(scroller)}
                 dataSource={this.state.dataSource}
                 renderRow={(rowData,sectionId,rowId)=> this._renderItems(rowData,sectionId,rowId)}
                 renderSeparator={this._renderSep}
                 renderSectionHeader={(sectionData,sectionId) => this._renderSectionHeader(sectionData,sectionId)}
 
+                refreshControl={
+                    <RefreshControl
+                        title={this.state.title}
+                        // style={styles.headRefreshControl}
+                        refreshing={this.state.isRefreshing}
+                        tintColor={'red'}
+                        onRefresh={this.loadData.bind(this)}
+                    />}
+
+                onEndReached={() => this._onEndReached()}
                 // renderRow(rowData, sectionID, rowID, highlightRow) 渲染列表项的时候， rowData 就是数组中每一个对象。*/}
                 //initialListSize={5} // 指定在组件刚挂载的时候渲染多少行数据。用这个属性来确保首屏显示合适数量的数据，而不是花费太多帧逐步显示出来。
                 // renderHeader={this._renderSep} // 每个cell的头部
@@ -78,22 +113,37 @@ export  default  class  TestListView extends  Component{
     };
 
 
+    componentDidMount() {
+
+    }
+
+    componentWillUnmount() {
+        // 复原数据
+        isFirst = true;
+        runNumber = 1;
+
+    }
+
     _renderSep = () => {
         return <View style={styles.separator}></View>;
     }
 
     _renderSectionHeader(sectionData,sectionId){
         return (
-            <View style={styles.sectionHeader}>
-                <Text style={styles.sectionText}>{'第'+sectionId+'组'}</Text>
-            </View>
+                <TouchableOpacity onPress={() => this.clickHeader(sectionId)} >
+
+                    <View style={styles.sectionHeader}>
+                        <Text style={styles.sectionText}>{'第'+sectionId+'组'}</Text>
+                    </View>
+
+                </TouchableOpacity>
+
         );
     }
 
     _renderItems(rowData,sectionId,rowId) {
 
         return (
-
                 <TouchableOpacity activeOpacity={0.7} onPress = {()=>this.clickItem(rowData,sectionId,rowId)} >
                     <View style={styles.container}>
                         <Text style={styles.text}>{rowData}</Text>
@@ -105,14 +155,118 @@ export  default  class  TestListView extends  Component{
     }
 
 
+    _onScroll(scroller){
 
+        let offsetY =  scroller.nativeEvent.contentOffset.y;
+        if (offsetY < 50){
+            this.setState({
+                title: '下拉开始刷新'
+            })
+
+        }else if(offsetY >= 50){
+            this.setState({
+                title: '松开立即刷新'
+            })
+        }
+
+
+    }
+
+    _onEndReached(){
+        if (isFirst){
+            isFirst = false;
+            return;
+        }
+
+        // if (this.state.isNoMoreData) {
+        //     alert('已加载完所有数据');
+        // } else {
+        //     alert('加载更多');
+        // }
+    }
+
+    clickHeader = (sectionId) => {
+        alert('点击了'+sectionId+'的头部')
+    }
 
     clickItem = (rowData,sectionId,rowId) => {
         alert('点击了：'+ sectionId +'组,'+ rowId+'行，' +  '内容：'+rowData);
     }
 
 
+    // 加载数据 注意这个方法前面有async关键字
+    loadData (){
+        this.requestData(true);
+    }
 
+
+    requestData(isForLoadMoreData){
+
+        isForLoadMoreData = isForLoadMoreData || true;
+
+
+        // if (this.state.isRefreshing) return;
+
+        if (isForLoadMoreData){ // 上拉加载更多
+
+            runNumber ++;
+            this.setState({
+                isRefreshing: true,
+                isLoadMoreData: true,
+            })
+
+            // alert('runNumber == '+ runNumber)
+            loadMoreDataTimer = setTimeout( () => {
+                this.setState({
+                    isRefreshing: false,
+                    isLoadMoreData: false,
+                    dataSource: ds.cloneWithRowsAndSections(this.getDatas()), //ds.cloneWithRows(this.staticDatas.rowDatas),
+
+                })
+                clearTimeout(loadMoreDataTimer);
+            }, 2000)
+
+
+        } else { // 下拉刷新
+
+            runNumber = 1;
+            this.setState({
+                isRefreshing: true,
+                isLoadMoreData: true,
+            })
+
+            // alert('runNumber == '+ runNumber)
+            loadMoreDataTimer = setTimeout( () => {
+                this.setState({
+                    isRefreshing: false,
+                    isLoadMoreData: false,
+                    dataSource: ds.cloneWithRowsAndSections(this.getDatas()), //ds.cloneWithRows(this.staticDatas.rowDatas),
+
+                })
+                clearTimeout(loadMoreDataTimer);
+            }, 2000)
+        }
+
+
+
+
+
+        // try {
+        //     // 注意这里的await语句，其所在的函数必须有async关键字声明
+        //     // let response = await fetch('http://www.baidu.com');
+        //     // let responseJson = await response.json();
+        //     // let datas = responseJson.data;
+        //     //
+        //     //
+        //     this.setState({
+        //         isRefreshing: false,
+        //         isNoMoreData: true,
+        //     })
+        // } catch (error) {
+        //     alert("requestData " + error);
+        // }
+
+    }
 
 
 
@@ -161,6 +315,10 @@ const  styles = StyleSheet.create({
         fontSize: 20,
         marginTop: 10,
         marginBottom: 10,
+    },
+
+    // 刷新控件
+    headRefreshControl:{
     },
 
     // cell的内容

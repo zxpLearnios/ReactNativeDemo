@@ -56045,23 +56045,6 @@ var Mine = function (_Component) {
     }
 
     babelHelpers.createClass(Mine, [{
-        key: 'getDatas',
-        value: function getDatas() {
-            var title = '';
-            var smallAry = [];
-
-            for (var i = 0; i < 3; i++) {
-                for (var j = 0; j < 3; j++) {
-                    title = '第' + i + "组" + '第' + j + "行";
-                    smallAry.push(title);
-                    console.log(title);
-                }
-                bigAry = bigAry.concat(smallAry);
-                smallAry.shift();
-            }
-            return bigAry;
-        }
-    }, {
         key: 'render',
         value: function render() {
             var navigate = this.props.navigation.navigate;
@@ -56072,7 +56055,7 @@ var Mine = function (_Component) {
                 {
                     __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 40
+                        lineNumber: 26
                     }
                 },
                 _react2.default.createElement(_reactNative.Button, {
@@ -56082,7 +56065,7 @@ var Mine = function (_Component) {
                     },
                     __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 42
+                        lineNumber: 28
                     }
                 })
             );
@@ -57429,24 +57412,34 @@ var _react2 = babelHelpers.interopRequireDefault(_react);
 
 var _reactNative = require(26            ); // 26 = react-native
 
-var bigAry = [];
+var isFirst = true;
+var runNumber = 1;
+var ds = new _reactNative.ListView.DataSource({
+    rowHasChanged: function rowHasChanged(r1, r2) {
+        return r1 !== r2;
+    },
+    sectionHeaderHasChanged: function sectionHeaderHasChanged(s1, s2) {
+        return s1 !== s2;
+    }
+});
 
 var TestListView = function (_Component) {
     babelHelpers.inherits(TestListView, _Component);
     babelHelpers.createClass(TestListView, [{
         key: 'getDatas',
         value: function getDatas() {
+
             var title = '';
+            var bigAry = [];
             var smallAry = [];
 
-            for (var i = 0; i < 3; i++) {
-                for (var j = 0; j < 3; j++) {
+            for (var i = 0; i < runNumber; i++) {
+                for (var j = 0; j < 5; j++) {
                     title = '第' + i + "组" + '第' + j + "行";
                     smallAry.push(title);
-                    console.log(title);
                 }
-                bigAry.concat(smallAry);
-                smallAry.shift();
+                bigAry.push(smallAry);
+                smallAry = [];
             }
             return bigAry;
         }
@@ -57457,35 +57450,34 @@ var TestListView = function (_Component) {
 
         var _this = babelHelpers.possibleConstructorReturn(this, (TestListView.__proto__ || Object.getPrototypeOf(TestListView)).call(this, props));
 
-        _this.datas = {
+        _this.staticDatas = {
             rowDatas: ['这是ListView的Cell', '这是ListView的Cell', '这是ListView的Cell'],
             sectionDatas: _this.getDatas() };
 
         _this._renderSep = function () {
             return _react2.default.createElement(_reactNative.View, { style: styles.separator, __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 82
+                    lineNumber: 118
                 }
             });
+        };
+
+        _this.clickHeader = function (sectionId) {
+            alert('点击了' + sectionId + '的头部');
         };
 
         _this.clickItem = function (rowData, sectionId, rowId) {
             alert('点击了：' + sectionId + '组,' + rowId + '行，' + '内容：' + rowData);
         };
 
-        var ds = new _reactNative.ListView.DataSource({
-            rowHasChanged: function rowHasChanged(r1, r2) {
-                return r1 !== r2;
-            },
-            sectionHeaderHasChanged: function sectionHeaderHasChanged(s1, s2) {
-                return s1 !== s2;
-            }
-        });
-
         _this.state = {
-            dataSource: ds.cloneWithRowsAndSections(_this.datas.sectionDatas) };
+            dataSource: ds.cloneWithRowsAndSections(_this.getDatas()),
 
-        alert(bigAry.length);
+            isRefreshing: false,
+            isLoadMoreData: false,
+            isNoMoreData: false
+        };
+
         return _this;
     }
 
@@ -57495,8 +57487,11 @@ var TestListView = function (_Component) {
             var _this2 = this;
 
             return _react2.default.createElement(_reactNative.ListView, {
-                dataSource: this.state.dataSource,
 
+                onScroll: function onScroll(scroller) {
+                    return _this2._onScroll(scroller);
+                },
+                dataSource: this.state.dataSource,
                 renderRow: function renderRow(rowData, sectionId, rowId) {
                     return _this2._renderItems(rowData, sectionId, rowId);
                 },
@@ -57504,65 +57499,165 @@ var TestListView = function (_Component) {
                 renderSectionHeader: function renderSectionHeader(sectionData, sectionId) {
                     return _this2._renderSectionHeader(sectionData, sectionId);
                 },
+
+                refreshControl: _react2.default.createElement(_reactNative.RefreshControl, {
+                    title: '下拉开始刷新',
+
+                    refreshing: this.state.isRefreshing,
+                    tintColor: 'red',
+                    onRefresh: this.loadData.bind(this),
+                    __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 88
+                    }
+                }),
+
+                onEndReached: function onEndReached() {
+                    return _this2._onEndReached();
+                },
                 __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 67
+                    lineNumber: 79
                 }
             });
         }
     }, {
+        key: 'componentDidMount',
+        value: function componentDidMount() {}
+    }, {
+        key: 'componentWillUnmount',
+        value: function componentWillUnmount() {
+            isFirst = true;
+            runNumber = 1;
+        }
+    }, {
         key: '_renderSectionHeader',
         value: function _renderSectionHeader(sectionData, sectionId) {
+            var _this3 = this;
+
             return _react2.default.createElement(
-                _reactNative.View,
-                { style: styles.sectionHeader, __source: {
+                _reactNative.TouchableOpacity,
+                { onPress: function onPress() {
+                        return _this3.clickHeader(sectionId);
+                    }, __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 87
+                        lineNumber: 123
                     }
                 },
                 _react2.default.createElement(
-                    _reactNative.Text,
-                    { style: styles.sectionText, __source: {
+                    _reactNative.View,
+                    { style: styles.sectionHeader, __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 88
+                            lineNumber: 125
                         }
                     },
-                    '第' + sectionId + '组'
+                    _react2.default.createElement(
+                        _reactNative.Text,
+                        { style: styles.sectionText, __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 126
+                            }
+                        },
+                        '第' + sectionId + '组'
+                    )
                 )
             );
         }
     }, {
         key: '_renderItems',
         value: function _renderItems(rowData, sectionId, rowId) {
-            var _this3 = this;
+            var _this4 = this;
 
             return _react2.default.createElement(
                 _reactNative.TouchableOpacity,
                 { activeOpacity: 0.7, onPress: function onPress() {
-                        return _this3.clickItem(rowData, sectionId, rowId);
+                        return _this4.clickItem(rowData, sectionId, rowId);
                     }, __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 97
+                        lineNumber: 137
                     }
                 },
                 _react2.default.createElement(
                     _reactNative.View,
                     { style: styles.container, __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 98
+                            lineNumber: 138
                         }
                     },
                     _react2.default.createElement(
                         _reactNative.Text,
                         { style: styles.text, __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 99
+                                lineNumber: 139
                             }
                         },
                         rowData
                     )
                 )
             );
+        }
+    }, {
+        key: '_onScroll',
+        value: function _onScroll(scroller) {
+            console.log('---' + scroller.nativeEvent.pageY);
+        }
+    }, {
+        key: '_onEndReached',
+        value: function _onEndReached() {
+            if (isFirst) {
+                isFirst = false;
+                return;
+            }
+        }
+    }, {
+        key: 'loadData',
+        value: function loadData() {
+
+            this.requestData(true);
+        }
+    }, {
+        key: 'requestData',
+        value: function requestData(isForLoadMoreData) {
+            var _this5 = this;
+
+            isForLoadMoreData = isForLoadMoreData || true;
+
+            if (isForLoadMoreData) {
+
+                runNumber++;
+                this.setState({
+                    isRefreshing: true,
+                    isLoadMoreData: true
+                });
+
+                loadMoreDataTimer = setTimeout(function () {
+                    _this5.setState({
+                        isRefreshing: false,
+                        isLoadMoreData: false,
+                        dataSource: ds.cloneWithRowsAndSections(_this5.getDatas()) });
+                    clearTimeout(loadMoreDataTimer);
+                }, 2000);
+            } else {
+
+                runNumber = 1;
+                loadDataTimer = setTimeout(function () {
+
+                    clearloadDataTimer = setTimeout(function () {
+                        _this5.setState({
+                            isRefreshing: false
+                        });
+
+                        clearTimeout(clearloadDataTimer);
+                    }, 2500);
+
+                    _this5.setState({
+                        isRefreshing: true,
+                        isLoadMoreData: false
+                    });
+                }, 2000);
+
+                clearTimeout(loadDataTimer);
+            }
         }
     }]);
     return TestListView;
@@ -57574,7 +57669,7 @@ var styles = _reactNative.StyleSheet.create({
 
     separator: {
         backgroundColor: '#d5d5d5',
-        height: 10
+        height: 1
     },
 
     sectionHeader: {
@@ -57589,6 +57684,8 @@ var styles = _reactNative.StyleSheet.create({
         marginTop: 10,
         marginBottom: 10
     },
+
+    headRefreshControl: {},
 
     container: {
         height: 50,

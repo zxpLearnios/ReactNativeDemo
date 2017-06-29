@@ -7,11 +7,11 @@
     "test": "jest"
   },
   "dependencies": {
-
     "prop-types": "^15.5.10",
     "react": "16.0.0-alpha.12",
     "react-native": "0.45.1",
-    "react-navigation": "^1.0.0-beta.11"
+    "react-navigation": "^1.0.0-beta.11",
+    "react-timer-mixin": "^0.13.3" // ES5的東西，6已無，我们强烈建议您使用react-timer-mixin提供的this.setTimeout(...)来代替setTimeout(...)。这可以规避许多难以排查的BUG。
   },
   "devDependencies": {
     "babel-jest": "20.0.3",
