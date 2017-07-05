@@ -1,7 +1,7 @@
 /**
  * Created by jingnanzhang on 2017/5/31.
  */
-import  React, {Component} from 'react';
+import  React, {Component, } from 'react';
 import {
     Text,
     Button,
@@ -10,11 +10,11 @@ import {
 
 }from 'react-native';
 
-// import MineDetailPage from './MineDetail'
-import MyReactView from '../nativeComponents/MyReactView'
+
+
+import MyView from '../nativeComponents/MyView'
 
 export default class  Mine extends  Component{
-
 
 
 
@@ -23,7 +23,7 @@ export default class  Mine extends  Component{
         const { navigate } = this.props.navigation;
 
         return (
-            <View>
+            <View style={styles.container}>
 
                 <Button
                     title="跳转"
@@ -33,10 +33,9 @@ export default class  Mine extends  Component{
                     }
                 />
 
-                {/*<MyReactView*/}
-                    {/*ref={testNativeView => this.testNativeView = testNativeView}*/}
-                       {/*style={styles.reactView}*/}
-                {/*/>*/}
+                <MyView
+                     style={styles.reactView}
+                />
 
             </View>
 
@@ -44,34 +43,28 @@ export default class  Mine extends  Component{
         )
     }
 
-    btnAction = () => {
-        // this.testNativeView.doSomething('在js里调用ios原生控件的方法')
 
-        this.testNativeView.doSomething(('RN->原生的数据'),(error,events) => {
-            if (error) {
-                console.warn(error);
-            } else {
-                alert(events)//返回的数据
-            }
-        });
-    }
+
 
 
 }
 
-const  styles = StyleSheet.create({
-   reactView:{
-       // flex: 1,
-       width: 100,
-       height: 200,
-       alignItems: 'center',
-       justifyContent: 'center',
-       // backgroundColor: 'red',
-   },
+
+
+
+
+const  styles  = StyleSheet.create({
+    container:{
+        flex:1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+
+    reactView:{
+        width: 200,
+        height: 200,
+        // backgroundColor: 'red',
+    },
 
 });
-
-
-
-
 

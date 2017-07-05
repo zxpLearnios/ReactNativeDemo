@@ -15,6 +15,7 @@ import {
 
 }from 'react-native';
 
+/* Mixin: ES5的東西，6已無，我们强烈建议您使用react-timer-mixin提供的this.setTimeout(...)来代替setTimeout(...)。这可以规避许多难以排查的BUG**/
 
 
 let defaultTitle ='获取验证码';
