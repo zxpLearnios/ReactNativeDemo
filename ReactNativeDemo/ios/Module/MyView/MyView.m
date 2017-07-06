@@ -73,6 +73,8 @@
   lab.backgroundColor = bgForLabel;
 }
 
+
+// -----------  private -------------//
 -(void)layoutSubviews{
   [super layoutSubviews];
   
@@ -111,10 +113,38 @@
 //  }
 //}
 
+
+
 - (IBAction)btnAction:(UIButton *)sender {
     
-    int a = arc4random() % 100;
-    lab.text = [NSString stringWithFormat:@"%d", a];
+  int a = arc4random() % 100;
+  lab.text = [NSString stringWithFormat:@"%d", a];
+  
+  if (!self.onClickButtonBlock) {
+    return;
+  }
+  
+  //  导出事件给rn, 外部通过events.nativeEvent.labText\target 来获取相应的值哦
+  self.onClickButtonBlock(@{@"labText": self.getlabelText, @"target": self});
+  
+//  if (self.delegate && [self.delegate respondsToSelector:@selector(click:)]) {
+//    [self.delegate click:self];
+//  }
+  
+  
+  
+}
+
+// ----------------------- set&get -------------- //
+-(void)setLabText:(NSString *)labText{
+  _labText = labText;
+  lab.text = labText;
+}
+
+
+
+-(NSString *)getlabelText{
+  return lab.text;
 }
 
 @end

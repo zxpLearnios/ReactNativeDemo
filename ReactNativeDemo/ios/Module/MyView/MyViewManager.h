@@ -11,14 +11,13 @@
  3.
  */
 
+
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 
 #import <React/RCTBridgeModule.h>
 #import <React/RCTViewManager.h>
 #import <React/RCTConvert.h>
-
-
 
 //#import <React/RCTBridge.h> // 进行通信的头文件
 //#import <React/RCTEventDispatcher.h>  //事件派发，不导入会引起Xcode警告
