@@ -28,8 +28,20 @@ var ds = new ListView.DataSource({
     sectionHeaderHasChanged: (s1, s2) => s1 !== s2,
 });
 
+
+let nx = null;
 // 如果不想在滑动过快导致白屏出现，就只能使用 ListView 。而不能使用SectionList 和 FlatList
 export  default  class  TestListView extends  Component{
+
+
+    static navigationOptions = ({navigation}) => ({
+        title: `${navigation.state.params.info}`,
+        // 设置左边按钮都无效
+        // backTitle: '返回',
+        // backButtonTitle:"由TestListView Push",
+        // left: 'left',
+    });
+
 
     // 返回一个二维数组，数据源
     getDatas(){
@@ -79,6 +91,9 @@ export  default  class  TestListView extends  Component{
 
 
 
+        const {navigate} = this.props.navigation;
+
+        nx = navigate;
     }
 
 
@@ -112,9 +127,10 @@ export  default  class  TestListView extends  Component{
         );
     };
 
-
+    // 接受參數
     componentDidMount() {
-
+        // const {params} = this.props.navigation.state;
+        // alert(params.info)
     }
 
     componentWillUnmount() {
@@ -144,7 +160,9 @@ export  default  class  TestListView extends  Component{
     _renderItems(rowData,sectionId,rowId) {
 
         return (
-                <TouchableOpacity activeOpacity={0.7} onPress = {()=>this.clickItem(rowData,sectionId,rowId)} >
+                <TouchableOpacity activeOpacity={0.7} onPress = {()=>
+                     this.clickItem(rowData,sectionId,rowId) }
+                >
                     <View style={styles.container}>
                         <Text style={styles.text}>{rowData}</Text>
                     </View>
@@ -189,8 +207,10 @@ export  default  class  TestListView extends  Component{
         alert('点击了'+sectionId+'的头部')
     }
 
+    // 测试必须有一个A push出B后，在B里设置导航栏左边、右边的字时才有效
     clickItem = (rowData,sectionId,rowId) => {
-        alert('点击了：'+ sectionId +'组,'+ rowId+'行，' +  '内容：'+rowData);
+        // alert('点击了：'+ sectionId +'组,'+ rowId+'行，' +  '内容：'+rowData);
+        nx('MineDetail')
     }
 
 

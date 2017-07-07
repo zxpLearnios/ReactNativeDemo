@@ -11,7 +11,7 @@ import {
     Dimensions,
 }from 'react-native';
 
-// Const的第一种方式
+// Const的第一种方式  导入constant
 import  * as conster from  '../const/Const' // 导出Const.js里所有的变量和方法
 // // Const的第二种方式
 // import  Const from '../const/Const'

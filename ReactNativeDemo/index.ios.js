@@ -18,12 +18,11 @@ import {
 
 
 
-
 import Main from './app/main/Main'
 
 export default class MyRNProject extends Component {
   render() {
-      return <Main/>;
+      return <Main />;
   }
 }
 

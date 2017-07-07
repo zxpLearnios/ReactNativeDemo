@@ -2,20 +2,26 @@
  * Created by jingnanzhang on 2017/5/31.
  */
 
-import React, { Component } from 'react';
+// 方式1
+// import React, { Component } from 'react'
+
+// import  Navigator from '../main/Navigator'
+//
+// export  default  class Main extends  Component{
+//
+//     render(){
+//         return <Navigator/>;
+//     }
+//
+// }
 
 
-// 导入js类
-import  Navigator from '../main/Navigator'
+// 方式2
+module.exports = require('./Navigator');
 
-export  default  class Main extends  Component{
 
-    render(){
-        return <Navigator/>;
-    }
-
-}
-
+// 其他，非3
+// const invariant = require('fbjs/lib/invariant');
 
 
 

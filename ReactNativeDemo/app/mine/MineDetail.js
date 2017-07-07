@@ -40,12 +40,21 @@ import  * as conster from  '../const/Const'
 export default  class MineDetail extends  Component{
 
 
+    // 测试必须有一个A push出B后，在里设置导航栏左边、右边的字时才有效，默認為A的title，若A的title太長，則顯示為Back
+    static navigationOptions = ({navigation}) => ({
+        // 设置左边按钮都无效, 必須使用自定義的導航欄
+        headerBackTitle: '返回',
+        backButtonTitle:"由TestListView Push",
+        left: 'left',
+    });
+
     // 本类里所有的常量
     constGlobal={
         phoneHint: '请输入手机号码',
         verCodeHint: '请输入验证码',
         pwdHint: '密码须含有数字和字母，6-20位',
     };
+
 
     static constGlobal1=function () {
         return MineDetail.prototype.props.constGlobal;

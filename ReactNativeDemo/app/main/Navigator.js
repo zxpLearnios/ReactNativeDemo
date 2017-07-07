@@ -1,13 +1,13 @@
 /**
  * Created by jingnanzhang on 2017/5/31.
  */
+// 这里只写tab页
+
 
 import React, { Component } from 'react';
+
 import {
-    AppRegistry,
-
-}from 'react-native';
-
+    Button,} from 'react-native';
 import {
     TabNavigator,
     StackNavigator,
@@ -18,8 +18,11 @@ import {
 // 导入js类
 import  HomePage from '../home/Home'
 import  MinePage from '../mine/Mine'
+import LoginPage from '../mine/Login'
 
+import CustomeNavigationBar from '../customeComponents/NavigationBar'
 import  TabBarItem from '../main/TabBarItem'
+
 
 
 import MineDetailPage from '../mine/MineDetail'
@@ -32,6 +35,11 @@ export  default  class Navigator extends  Component{
         return <AppNavigator/>;
     }
 
+    test(){
+
+
+
+    }
 }
 
 
@@ -79,7 +87,7 @@ const AppTab = TabNavigator({
         tabBarComponent: TabBarBottom,
         tabBarPosition: 'bottom',
         swipeEnabled: false, // 左右滑动
-        animationEnabled: false, // 页面切换时需要动画
+        animationEnabled: false, // 页面切换时不需要动画
         lazy: true,
 
 
@@ -92,29 +100,44 @@ const AppTab = TabNavigator({
 );
 
 
-// 所有需要push的页面均需加入此screen组里
+
+
+/*
+* 1. 所有需要push的页面均需加入此screen组里
+* 2. 下面的StackNavigator默认显示里面的第一个screen
+*
+* */
 const AppNavigator = StackNavigator({
 
-    Tab: {
+    // 登录的导航栏在LoginPage设置
+    LoginPage:{
+        screen: LoginPage,
+        // navigationOptions:  CustomeNavigationBar('wetft'), // 测试自定义的导航栏
+    },
+
+    TabPage: {
         screen: AppTab,
     },
 
+
+    // 此种方式将页面加入导航栈不简便，故不用
     MineDetail:{
         screen: MineDetailPage,
 
         navigationOptions:{
             headerTitle:'我的详情',
-            headerBackTitle:'返回我的',
+            // headerBackTitle:'返回我的',
         },
 
     },
 
     TestListView:{
         screen: TestListViewPage,
+        header:{
+            // visible: false, // 是否顯示導航欄
+        },
 
     }
-
-
 });
 
 

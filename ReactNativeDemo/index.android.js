@@ -16,12 +16,13 @@ import Main from './app/main/Main'
 
 
 export default class MyRNProject extends Component {
-    render() {
-        return (
-            <Main/>
-        )
-    }
-}
 
+
+    render() {
+        return <Main/>
+    }
+
+
+}
 
 AppRegistry.registerComponent('ReactNativeDemo', () => MyRNProject);
