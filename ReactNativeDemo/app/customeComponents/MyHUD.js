@@ -3,7 +3,7 @@
  */
 // 弹框  rgb设置背景色 alpha
 // RN 的组件除了 Text，其他组件默认是不支持点击事件，也不能响应基本触摸事件，故提供以下组件：TouchableHighlight , TouchableNativeFeedback , TouchableOpacity 和 TouchableWithoutFeedback
-
+// Modal使用时，必须在内部价格view作为contentView
 import  React, {Component} from 'react';
 
 import {

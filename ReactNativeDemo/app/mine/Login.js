@@ -21,6 +21,7 @@ import CustomeNavigationBar from '../customeComponents/NavigationBar'
 // Const的第一种方式  导入constant
 import  * as conster from  '../const/Const' // 导出Const.js里所有的变量和方法
 
+import {Global, }  from '../customeComponents/customeComponents';
 
 export default class Login extends Component{
 
@@ -44,9 +45,15 @@ export default class Login extends Component{
         )
     }
 
+    componentDidMount(){
+        conster.width = 200;
+
+        Global.saveInfo(conster.saveUserkey, {name:'zzz', id:'111'})
+    }
+
     // 使用resetAction，出栈
     loadHomePage(){
-        this.props.navigation.dispatch(conster.resetAction)
+        this.props.navigation.dispatch(conster.resetMainPageAction)
     }
 
 }

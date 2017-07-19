@@ -1270,7 +1270,7 @@ var MyRNProject = function (_Component) {
       return _react2.default.createElement(_Main2.default, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 26
+          lineNumber: 25
         }
       });
     }
@@ -48657,42 +48657,8 @@ function takeSnapshot(view, options) {
 
 module.exports = takeSnapshot;
 }, 401, null, "takeSnapshot");
-__d(/* ReactNativeDemo/app/main/Main.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-var _jsxFileName = '/Users/jingnanzhang/Desktop/ReactNativeDemo/ReactNativeDemo/app/main/Main.js';
-
-var _react = require(12     ); // 12 = react
-
-var _react2 = babelHelpers.interopRequireDefault(_react);
-
-var _Navigator = require(403                ); // 403 = ../main/Navigator
-
-var _Navigator2 = babelHelpers.interopRequireDefault(_Navigator);
-
-var Main = function (_Component) {
-    babelHelpers.inherits(Main, _Component);
-
-    function Main() {
-        babelHelpers.classCallCheck(this, Main);
-        return babelHelpers.possibleConstructorReturn(this, (Main.__proto__ || Object.getPrototypeOf(Main)).apply(this, arguments));
-    }
-
-    babelHelpers.createClass(Main, [{
-        key: 'render',
-        value: function render() {
-            return _react2.default.createElement(_Navigator2.default, {
-                __source: {
-                    fileName: _jsxFileName,
-                    lineNumber: 14
-                }
-            });
-        }
-    }]);
-    return Main;
-}(_react.Component);
-
-exports.default = Main;
+__d(/* ReactNativeDemo/app/main/Main.js */function(global, require, module, exports) {
+module.exports = require(403          ); // 403 = ./Navigator
 }, 402, null, "ReactNativeDemo/app/main/Main.js");
 __d(/* ReactNativeDemo/app/main/Navigator.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
     value: true
@@ -48715,15 +48681,23 @@ var _Mine = require(466           ); // 466 = ../mine/Mine
 
 var _Mine2 = babelHelpers.interopRequireDefault(_Mine);
 
-var _TabBarItem = require(468                 ); // 468 = ../main/TabBarItem
+var _Login = require(468            ); // 468 = ../mine/Login
+
+var _Login2 = babelHelpers.interopRequireDefault(_Login);
+
+var _NavigationBar = require(469                                 ); // 469 = ../customeComponents/NavigationBar
+
+var _NavigationBar2 = babelHelpers.interopRequireDefault(_NavigationBar);
+
+var _TabBarItem = require(474                 ); // 474 = ../main/TabBarItem
 
 var _TabBarItem2 = babelHelpers.interopRequireDefault(_TabBarItem);
 
-var _MineDetail = require(469                 ); // 469 = ../mine/MineDetail
+var _MineDetail = require(475                 ); // 475 = ../mine/MineDetail
 
 var _MineDetail2 = babelHelpers.interopRequireDefault(_MineDetail);
 
-var _TestListView = require(478                   ); // 478 = ../mine/TestListView
+var _TestListView = require(484                   ); // 484 = ../mine/TestListView
 
 var _TestListView2 = babelHelpers.interopRequireDefault(_TestListView);
 
@@ -48741,10 +48715,13 @@ var Navigator = function (_Component) {
             return _react2.default.createElement(AppNavigator, {
                 __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 32
+                    lineNumber: 35
                 }
             });
         }
+    }, {
+        key: 'test',
+        value: function test() {}
     }]);
     return Navigator;
 }(_react.Component);
@@ -48764,11 +48741,11 @@ var AppTab = (0, _reactNavigation.TabNavigator)({
                 return _react2.default.createElement(_TabBarItem2.default, {
                     tintColor: tintColor,
                     focused: focused,
-                    normalImage: require(479                          ), // 479 = ../img/icon_tabbar_misc.png
-                    selectedImage: require(480                                   ), // 480 = ../img/icon_tabbar_misc_selected.png
+                    normalImage: require(485                          ), // 485 = ../img/icon_tabbar_misc.png
+                    selectedImage: require(486                                   ), // 486 = ../img/icon_tabbar_misc_selected.png
                     __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 45
+                        lineNumber: 53
                     }
                 });
             }
@@ -48785,11 +48762,11 @@ var AppTab = (0, _reactNavigation.TabNavigator)({
                 return _react2.default.createElement(_TabBarItem2.default, {
                     tintColor: tintColor,
                     focused: focused,
-                    normalImage: require(477                          ), // 477 = ../img/icon_tabbar_mine.png
-                    selectedImage: require(476                                   ), // 476 = ../img/icon_tabbar_mine_selected.png
+                    normalImage: require(483                          ), // 483 = ../img/icon_tabbar_mine.png
+                    selectedImage: require(482                                   ), // 482 = ../img/icon_tabbar_mine_selected.png
                     __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 60
+                        lineNumber: 68
                     }
                 });
             }
@@ -48813,8 +48790,11 @@ var AppTab = (0, _reactNavigation.TabNavigator)({
 });
 
 var AppNavigator = (0, _reactNavigation.StackNavigator)({
+    LoginPage: {
+        screen: _Login2.default
+    },
 
-    Tab: {
+    TabPage: {
         screen: AppTab
     },
 
@@ -48822,17 +48802,16 @@ var AppNavigator = (0, _reactNavigation.StackNavigator)({
         screen: _MineDetail2.default,
 
         navigationOptions: {
-            headerTitle: '我的详情',
-            headerBackTitle: '返回我的'
+            headerTitle: '我的详情'
         }
 
     },
 
     TestListView: {
-        screen: _TestListView2.default
+        screen: _TestListView2.default,
+        header: {}
 
     }
-
 });
 }, 403, null, "ReactNativeDemo/app/main/Navigator.js");
 __d(/* react-navigation/src/react-navigation.js */function(global, require, module, exports) {
@@ -55994,14 +55973,27 @@ var styles = _reactNative.StyleSheet.create({
 });
 }, 464, null, "ReactNativeDemo/app/home/Home.js");
 __d(/* ReactNativeDemo/app/const/Const.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
-exports.height = exports.width = undefined;
+exports.resetMainPageAction = exports.saveUserkey = exports.height = exports.width = undefined;
 
 var _reactNative = require(26            ); // 26 = react-native
 
-var width = exports.width = _reactNative.Dimensions.get('window').width;
-var height = exports.height = _reactNative.Dimensions.get('window').height;
+var _reactNavigation = require(404               ); // 404 = react-navigation
+
+var backAction = _reactNavigation.NavigationActions.back({
+    key: 'Profile'
+});
+
+var kwidth = _reactNative.Dimensions.get('window').width;
+var kheight = _reactNative.Dimensions.get('window').height;
+var saveUserkey = 'saveUserkey=key';exports.width = kwidth;
+exports.height = kheight;
+exports.saveUserkey = saveUserkey;
+var resetMainPageAction = exports.resetMainPageAction = _reactNavigation.NavigationActions.reset({
+    index: 0,
+    actions: [_reactNavigation.NavigationActions.navigate({ routeName: 'TabPage' })]
+});
 }, 465, null, "ReactNativeDemo/app/const/Const.js");
 __d(/* ReactNativeDemo/app/mine/Mine.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
     value: true
@@ -56014,9 +56006,15 @@ var _react2 = babelHelpers.interopRequireDefault(_react);
 
 var _reactNative = require(26            ); // 26 = react-native
 
-var _MyReactView = require(467                              ); // 467 = ../nativeComponents/MyReactView
+var _Const = require(465             ); // 465 = ../const/Const
 
-var _MyReactView2 = babelHelpers.interopRequireDefault(_MyReactView);
+var conster = babelHelpers.interopRequireWildcard(_Const);
+
+var _MyView = require(467                         ); // 467 = ../nativeComponents/MyView
+
+var _MyView2 = babelHelpers.interopRequireDefault(_MyView);
+
+var _customeComponents = require(476                                     ); // 476 = ../customeComponents/customeComponents
 
 var Mine = function (_Component) {
     babelHelpers.inherits(Mine, _Component);
@@ -56032,15 +56030,9 @@ var Mine = function (_Component) {
             args[_key] = arguments[_key];
         }
 
-        return _ret = (_temp = (_this = babelHelpers.possibleConstructorReturn(this, (_ref = Mine.__proto__ || Object.getPrototypeOf(Mine)).call.apply(_ref, [this].concat(args))), _this), _this.btnAction = function () {
+        return _ret = (_temp = (_this = babelHelpers.possibleConstructorReturn(this, (_ref = Mine.__proto__ || Object.getPrototypeOf(Mine)).call.apply(_ref, [this].concat(args))), _this), _this.testSet = function () {
 
-            _this.testNativeView.doSomething('RN->原生的数据', function (error, events) {
-                if (error) {
-                    console.warn(error);
-                } else {
-                    alert(events);
-                }
-            });
+            var set = new Set([1, 2, 3, 4, 4]);
         }, _temp), babelHelpers.possibleConstructorReturn(_this, _ret);
     }
 
@@ -56052,23 +56044,35 @@ var Mine = function (_Component) {
 
             return _react2.default.createElement(
                 _reactNative.View,
-                {
-                    __source: {
+                { style: styles.container, __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 26
+                        lineNumber: 30
                     }
                 },
                 _react2.default.createElement(_reactNative.Button, {
                     title: '\u8DF3\u8F6C',
                     onPress: function onPress() {
-                        return navigate('TestListView', { name: '传给其他页面' });
+                        return navigate('MineDetail', { info: '由Mine传给其他页面' });
                     },
                     __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 28
+                        lineNumber: 32
+                    }
+                }),
+                _react2.default.createElement(_MyView2.default, {
+                    style: styles.reactView,
+                    __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 40
                     }
                 })
             );
+        }
+    }, {
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            var user = _customeComponents.Global.getInfo(conster.saveUserkey);
+            console.log(user.id, user.name);
         }
     }]);
     return Mine;
@@ -56078,62 +56082,23 @@ exports.default = Mine;
 
 
 var styles = _reactNative.StyleSheet.create({
-    reactView: {
-        width: 100,
-        height: 200,
+    container: {
+        flex: 1,
         alignItems: 'center',
         justifyContent: 'center'
+    },
+
+    reactView: {
+        width: 200,
+        height: 200
     }
 
 });
 }, 466, null, "ReactNativeDemo/app/mine/Mine.js");
-__d(/* ReactNativeDemo/app/nativeComponents/MyReactView.js */function(global, require, module, exports) {var _require = require(26            ), // 26 = react-native
-    requireNativeComponent = _require.requireNativeComponent;
-
-module.exports = requireNativeComponent('MyView', null);
-}, 467, null, "ReactNativeDemo/app/nativeComponents/MyReactView.js");
-__d(/* ReactNativeDemo/app/main/TabBarItem.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var _jsxFileName = '/Users/jingnanzhang/Desktop/ReactNativeDemo/ReactNativeDemo/app/main/TabBarItem.js';
-
-var _react = require(12     ); // 12 = react
-
-var _react2 = babelHelpers.interopRequireDefault(_react);
-
-var _reactNative = require(26            ); // 26 = react-native
-
-var TabBarItem = function (_Component) {
-  babelHelpers.inherits(TabBarItem, _Component);
-
-  function TabBarItem() {
-    babelHelpers.classCallCheck(this, TabBarItem);
-    return babelHelpers.possibleConstructorReturn(this, (TabBarItem.__proto__ || Object.getPrototypeOf(TabBarItem)).apply(this, arguments));
-  }
-
-  babelHelpers.createClass(TabBarItem, [{
-    key: 'render',
-    value: function render() {
-      var selectedImage = this.props.focused ? this.props.selectedImage : this.props.normalImage;
-      return _react2.default.createElement(_reactNative.Image, {
-        source: selectedImage,
-        style: { tintColor: this.props.tintColor, width: 25, height: 25 },
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 10
-        }
-      });
-    }
-  }]);
-  return TabBarItem;
-}(_react.Component);
-
-exports.default = TabBarItem;
-}, 468, null, "ReactNativeDemo/app/main/TabBarItem.js");
-__d(/* ReactNativeDemo/app/mine/MineDetail.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
+__d(/* ReactNativeDemo/app/nativeComponents/MyView.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
     value: true
 });
-var _jsxFileName = '/Users/jingnanzhang/Desktop/ReactNativeDemo/ReactNativeDemo/app/mine/MineDetail.js';
+var _jsxFileName = '/Users/jingnanzhang/Desktop/ReactNativeDemo/ReactNativeDemo/app/nativeComponents/MyView.js';
 
 var _react = require(12     ); // 12 = react
 
@@ -56141,573 +56106,84 @@ var _react2 = babelHelpers.interopRequireDefault(_react);
 
 var _reactNative = require(26            ); // 26 = react-native
 
-var _customeComponents = require(470                                     ); // 470 = ../customeComponents/customeComponents
+var RCTMyView = (0, _reactNative.requireNativeComponent)('MyView', MyView);
 
-var _Const = require(465             ); // 465 = ../const/Const
+var NativeMyView = _reactNative.NativeModules.MyViewManager;
 
-var conster = babelHelpers.interopRequireWildcard(_Const);
+var MyView = function (_Component) {
+    babelHelpers.inherits(MyView, _Component);
 
-
-var font_size = 15;
-var font_color = '#333333';
-var font_orangeCl = '#FF5A00';
-var protocolColor = '#999999';
-var margin = 10;
-var leftTextWidth = 50;
-var top = 20;
-var topViewH = 210 - 2 * top;
-
-var MineDetail = function (_Component) {
-    babelHelpers.inherits(MineDetail, _Component);
-
-    function MineDetail(props) {
-        babelHelpers.classCallCheck(this, MineDetail);
-
-        var _this = babelHelpers.possibleConstructorReturn(this, (MineDetail.__proto__ || Object.getPrototypeOf(MineDetail)).call(this, props));
-
-        _this.constGlobal = {
-            phoneHint: '请输入手机号码',
-            verCodeHint: '请输入验证码',
-            pwdHint: '密码须含有数字和字母，6-20位'
-        };
-        _this.keyboardState = {
-            behavior: 'position',
-            modalOpen: false,
-
-            underlineColorAndroid: 'transparent'
-        };
-        _this.phoneInputState = {
-            keyboardType: 'numeric',
-            maxLength: 11,
-            clearButtonMode: 'while-editing',
-            underlineColorAndroid: 'transparent' };
-        _this.pwdInputState = {
-            maxLength: 20,
-            clearButtonMode: 'while-editing' };
-        _this.data = {
-
-            phone: '',
-            verCode: '',
-            pwd: ''
-        };
-
-        _this.setSubviews = function () {
-            return _react2.default.createElement(
-                _reactNative.View,
-                { style: styles.mainContainer, __source: {
-                        fileName: _jsxFileName,
-                        lineNumber: 115
-                    }
-                },
-                _react2.default.createElement(
-                    _reactNative.ScrollView,
-                    {
-                        __source: {
-                            fileName: _jsxFileName,
-                            lineNumber: 117
-                        }
-                    },
-                    _react2.default.createElement(
-                        _reactNative.View,
-                        { style: styles.contentView, __source: {
-                                fileName: _jsxFileName,
-                                lineNumber: 120
-                            }
-                        },
-                        _react2.default.createElement(_reactNative.TouchableOpacity, { activeOpacity: 1.0, onPress: _this.dismissKeyboardClick.bind(_this), __source: {
-                                fileName: _jsxFileName,
-                                lineNumber: 121
-                            }
-                        }),
-                        _react2.default.createElement(
-                            _reactNative.KeyboardAvoidingView,
-                            {
-                                __source: {
-                                    fileName: _jsxFileName,
-                                    lineNumber: 124
-                                }
-                            },
-                            _react2.default.createElement(
-                                _reactNative.View,
-                                { style: styles.topView, __source: {
-                                        fileName: _jsxFileName,
-                                        lineNumber: 132
-                                    }
-                                },
-                                _react2.default.createElement(
-                                    _reactNative.View,
-                                    { style: styles.phoneView, __source: {
-                                            fileName: _jsxFileName,
-                                            lineNumber: 137
-                                        }
-                                    },
-                                    _react2.default.createElement(
-                                        _reactNative.Text,
-                                        { style: styles.phoneText, __source: {
-                                                fileName: _jsxFileName,
-                                                lineNumber: 138
-                                            }
-                                        },
-                                        '\u624B\u673A\u53F7'
-                                    ),
-                                    _react2.default.createElement(_reactNative.TextInput, {
-                                        placeholder: _this.constGlobal.phoneHint,
-                                        keyboardType: _this.phoneInputState.keyboardType,
-                                        underlineColorAndroid: _this.phoneInputState.underlineColorAndroid,
-                                        maxLength: _this.phoneInputState.maxLength,
-                                        clearButtonMode: _this.phoneInputState.clearButtonMode,
-                                        style: styles.phoneInput,
-                                        onChangeText: function onChangeText(phone) {
-                                            return _this.handlePhoneFieldChange(phone);
-                                        },
-                                        __source: {
-                                            fileName: _jsxFileName,
-                                            lineNumber: 140
-                                        }
-                                    }),
-                                    _react2.default.createElement(_customeComponents.TimerBtn, { ref: function ref(timer) {
-                                            return _this.timer = timer;
-                                        },
-                                        onPress: _this.verCodeBtnACtion,
-                                        style: styles.timerBtn,
-                                        __source: {
-                                            fileName: _jsxFileName,
-                                            lineNumber: 151
-                                        }
-                                    })
-                                ),
-                                _react2.default.createElement(
-                                    _reactNative.View,
-                                    { style: styles.verCodeView, __source: {
-                                            fileName: _jsxFileName,
-                                            lineNumber: 160
-                                        }
-                                    },
-                                    _react2.default.createElement(
-                                        _reactNative.Text,
-                                        { title: '\u9A8C\u8BC1\u7801', style: styles.verCodeText, __source: {
-                                                fileName: _jsxFileName,
-                                                lineNumber: 161
-                                            }
-                                        },
-                                        '\u9A8C\u8BC1\u7801'
-                                    ),
-                                    _react2.default.createElement(_reactNative.TextInput, {
-                                        placeholder: _this.constGlobal.verCodeHint,
-                                        keyboardType: _this.phoneInputState.keyboardType,
-                                        underlineColorAndroid: _this.phoneInputState.underlineColorAndroid,
-                                        maxLength: 6,
-                                        clearButtonMode: _this.phoneInputState.clearButtonMode,
-                                        style: styles.verCodeInput,
-                                        onChangeText: function onChangeText(verCode) {
-                                            return _this.handleVerCodeFieldChange(verCode);
-                                        },
-                                        __source: {
-                                            fileName: _jsxFileName,
-                                            lineNumber: 162
-                                        }
-                                    })
-                                ),
-                                _react2.default.createElement(
-                                    _reactNative.View,
-                                    { style: styles.pwdView, __source: {
-                                            fileName: _jsxFileName,
-                                            lineNumber: 174
-                                        }
-                                    },
-                                    _react2.default.createElement(
-                                        _reactNative.Text,
-                                        { text: '\u5BC6\u7801', style: styles.pwdText, __source: {
-                                                fileName: _jsxFileName,
-                                                lineNumber: 175
-                                            }
-                                        },
-                                        '\u5BC6\u7801'
-                                    ),
-                                    _react2.default.createElement(_reactNative.TextInput, {
-                                        ref: function ref(pwdInput) {
-                                            return _this.pwdInput = pwdInput;
-                                        },
-                                        placeholder: _this.constGlobal.pwdHint,
-                                        underlineColorAndroid: _this.phoneInputState.underlineColorAndroid,
-                                        keyboardType: _this.pwdInputState.keyboardType,
-                                        maxLength: _this.pwdInputState.maxLength,
-                                        secureTextEntry: !_this.state.pwdVisiable,
-                                        clearButtonMode: _this.phoneInputState.clearButtonMode,
-                                        style: styles.pwdInput,
-                                        onChangeText: function onChangeText(pwd) {
-                                            return _this.handlePwdFieldChange(pwd);
-                                        },
-                                        __source: {
-                                            fileName: _jsxFileName,
-                                            lineNumber: 176
-                                        }
-                                    }),
-                                    _react2.default.createElement(_customeComponents.EyeBtn, { ref: function ref(eyeBtn) {
-                                            return _this.eyeBtn = eyeBtn;
-                                        }, cliclkCallBack: _this.eyeBtnAction.bind(_this), __source: {
-                                            fileName: _jsxFileName,
-                                            lineNumber: 188
-                                        }
-                                    })
-                                )
-                            ),
-                            _react2.default.createElement(
-                                _reactNative.View,
-                                { style: styles.centeView, __source: {
-                                        fileName: _jsxFileName,
-                                        lineNumber: 199
-                                    }
-                                },
-                                _react2.default.createElement(_customeComponents.LoginBtn, {
-                                    ref: function ref(loginBtn) {
-                                        return _this.loginBtn = loginBtn;
-                                    },
-                                    title: '\u7ACB\u5373\u6CE8\u518C',
-                                    onPress: _this.registAction.bind(_this), __source: {
-                                        fileName: _jsxFileName,
-                                        lineNumber: 201
-                                    }
-                                }),
-                                _react2.default.createElement(
-                                    _reactNative.View,
-                                    { style: styles.protocolView, __source: {
-                                            fileName: _jsxFileName,
-                                            lineNumber: 207
-                                        }
-                                    },
-                                    _react2.default.createElement(
-                                        _reactNative.Text,
-                                        { style: styles.protocolText, __source: {
-                                                fileName: _jsxFileName,
-                                                lineNumber: 208
-                                            }
-                                        },
-                                        '\u6CE8\u518C\u5373\u4EE3\u8868\u540C\u610F\u300A'
-                                    ),
-                                    _react2.default.createElement(_customeComponents.OrangeBtn, { title: 'Q\u6613\u501F\u670D\u52A1\u534F\u8BAE',
-                                        onPress: _this.protocolClickAction, __source: {
-                                            fileName: _jsxFileName,
-                                            lineNumber: 211
-                                        }
-                                    }),
-                                    _react2.default.createElement(
-                                        _reactNative.Text,
-                                        { style: styles.protocolText, __source: {
-                                                fileName: _jsxFileName,
-                                                lineNumber: 214
-                                            }
-                                        },
-                                        '\u300B'
-                                    )
-                                )
-                            ),
-                            _react2.default.createElement(
-                                _reactNative.View,
-                                { style: styles.bottomView, __source: {
-                                        fileName: _jsxFileName,
-                                        lineNumber: 220
-                                    }
-                                },
-                                _react2.default.createElement(
-                                    _reactNative.Text,
-                                    { style: styles.haveAccountText, __source: {
-                                            fileName: _jsxFileName,
-                                            lineNumber: 221
-                                        }
-                                    },
-                                    '\u5DF2\u6709\u8D26\u53F7\uFF1F'
-                                ),
-                                _react2.default.createElement(_customeComponents.OrangeBtn, { title: '\u76F4\u63A5\u767B\u5F55',
-                                    onPress: _this.loginAction, __source: {
-                                        fileName: _jsxFileName,
-                                        lineNumber: 223
-                                    }
-                                })
-                            )
-                        )
-                    )
-                ),
-                _this.renderHUD()
-            );
-        };
-
-        _this.updateRegisteBtnState = function () {
-
-            if (this.data.phone.length != 0 && this.data.verCode.length != 0 && this.data.pwd.length != 0) {
-                this.loginBtn.setDisable(false);
-            } else {
-                this.loginBtn.setDisable(true);
-            }
-        };
-
-        _this.eyeBtnAction = function () {
-            _this.setState({
-                pwdVisiable: !_this.state.pwdVisiable
-            });
-        };
-
-        _this.verCodeBtnACtion = function () {
-            _this.delayTimer = setInterval(function () {
-                _this.timer.setStart();
-
-                clearTimeout(_this.delayTimer);
-            }, 1000 * 3);
-        };
-
-        _this.protocolClickAction = function () {};
-
-        _this.state = {
-            pwdVisiable: false
-        };
-
-        return _this;
+    function MyView() {
+        babelHelpers.classCallCheck(this, MyView);
+        return babelHelpers.possibleConstructorReturn(this, (MyView.__proto__ || Object.getPrototypeOf(MyView)).apply(this, arguments));
     }
 
-    babelHelpers.createClass(MineDetail, [{
+    babelHelpers.createClass(MyView, [{
         key: 'render',
         value: function render() {
-            return this.setSubviews();
+            var _this2 = this;
+
+            return _react2.default.createElement(RCTMyView, babelHelpers.extends({}, this.props, {
+
+                ref: function ref(rv) {
+                    return _this2.rv = rv;
+                },
+                bgForLabel: 'red',
+
+                onClickButtonBlock: function onClickButtonBlock(events) {
+                    alert('test' + events.nativeEvent.labText);
+                },
+                __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 30
+                }
+            }));
         }
     }, {
         key: 'componentDidMount',
-        value: function componentDidMount() {}
-    }, {
-        key: 'componentWillUnmount',
-        value: function componentWillUnmount() {
-            this.dismissKeyboardClick();
+        value: function componentDidMount() {
+            var dic = { 'info': 'Rn传给ios的数据' };
         }
     }, {
-        key: 'renderHUD',
-        value: function renderHUD() {
-            var _this2 = this;
-
-            return _react2.default.createElement(_customeComponents.Hud, { ref: function ref(hud) {
-                    return _this2.hud = hud;
-                }, text: '\u8FD9\u662F\u63D0\u793A\u5185\u5BB9\uFF0C\u8FD9\u662F\u63D0\u793A\u5185\u5BB9\u8FD9\u8FD9\u662F\u63D0\u793A-------\u5185\u5BB9\u8FD9\u662F\u63D0\u793A\u5185\u5BB9', __source: {
-                    fileName: _jsxFileName,
-                    lineNumber: 252
-                }
-            });
-        }
-    }, {
-        key: 'dismissKeyboardClick',
-        value: function dismissKeyboardClick() {}
-    }, {
-        key: 'handlePhoneFieldChange',
-        value: function handlePhoneFieldChange(phone) {
-            this.data.phone = phone;
-
-            console.log('手机号是' + this.data.phone);
-
-            if (this.data.phone.length != 0) {
-                this.timer.setDisable(false);
-            } else {
-                this.timer.setDisable(true);
-            }
-
-            this.updateRegisteBtnState();
-        }
-    }, {
-        key: 'handleVerCodeFieldChange',
-        value: function handleVerCodeFieldChange(verCode) {
-            this.data.verCode = verCode;
-            this.updateRegisteBtnState();
-        }
-    }, {
-        key: 'handlePwdFieldChange',
-        value: function handlePwdFieldChange(pwd) {
-            this.data.pwd = pwd;
-
-            if (this.data.pwd.length != 0) {
-                this.eyeBtn.setDisable(false);
-            } else {
-
-                this.eyeBtn.setDisable(true);
-            }
-
-            this.updateRegisteBtnState();
-        }
-    }, {
-        key: 'registAction',
-        value: function registAction() {
-            alert('手机号是：' + this.data.phone + '  验证码是：' + this.data.verCode + '  密码是：' + this.data.pwd);
-        }
-    }, {
-        key: 'loginAction',
-        value: function loginAction() {
-            alert('登录');
-        }
+        key: 'sendTextToNative',
+        value: function sendTextToNative(str) {}
     }]);
-    return MineDetail;
+    return MyView;
 }(_react.Component);
 
-MineDetail.constGlobal1 = function () {
-    return MineDetail.prototype.props.constGlobal;
+MyView.propTypes = {
+    bgForLabel: _react.PropTypes.color
 };
-
-exports.default = MineDetail;
-
-var styles = _reactNative.StyleSheet.create({
-
-    mainContainer: {
-        flex: 1,
-        backgroundColor: 'white'
-    },
-
-    contentView: {
-        flex: 1,
-        justifyContent: 'space-between'
-    },
-
-    topView: {
-        height: topViewH,
-        alignItems: 'center',
-        margin: 20,
-        marginTop: 50
-    },
-
-    timerBtn: {
-
-        marginLeft: 10,
-        marginRight: 0
-    },
-
-    phoneView: {
-        flex: 1,
-
-        borderBottomWidth: 1,
-        borderBottomColor: font_color,
-        flexDirection: 'row',
-        alignItems: 'center'
-    },
-
-    verCodeView: {
-        flex: 1,
-        marginTop: top,
-        borderBottomWidth: 1,
-        borderBottomColor: font_color,
-        flexDirection: 'row',
-        alignItems: 'center'
-    },
-
-    pwdView: {
-        flex: 1,
-        marginTop: top,
-        borderBottomWidth: 1,
-        borderBottomColor: font_color,
-        flexDirection: 'row',
-        alignItems: 'center'
-    },
-
-    phoneText: {
-        color: font_color,
-        fontSize: font_size,
-        width: leftTextWidth
-    },
-
-    verCodeText: {
-        color: font_color,
-        fontSize: font_size,
-        width: leftTextWidth
-    },
-
-    pwdText: {
-        color: font_color,
-        fontSize: font_size,
-        width: leftTextWidth
-    },
-
-    phoneInput: {
-        flex: 1,
-        color: font_color,
-        fontSize: font_size,
-        marginLeft: margin
-    },
-
-    verCodeInput: {
-        flex: 1,
-        color: font_color,
-        fontSize: font_size,
-        marginLeft: margin
-
-    },
-
-    pwdInput: {
-        flex: 1,
-        color: font_color,
-        fontSize: font_size,
-        marginLeft: margin
-    },
-
-    verCodeBtn: {
-        width: 90,
-        height: 40
-    },
-
-    centeView: {
-        top: 20,
-        height: 70,
-        justifyContent: 'center'
-    },
-
-    regisBtn: {
-        fontSize: 20,
-        color: 'orange'
-    },
-
-    protocolView: {
-        height: 20,
-        top: 15,
-        flexDirection: 'row',
-        justifyContent: 'center'
-    },
-
-    protocolText: {
-        color: protocolColor,
-        fontSize: 14,
-        alignSelf: 'center'
-    },
-
-    bottomView: {
-        height: 20,
-        marginTop: conster.height * (150 / 667),
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-
-    haveAccountText: {
-        color: protocolColor,
-        fontSize: 14
-    }
-
-});
-}, 469, null, "ReactNativeDemo/app/mine/MineDetail.js");
+exports.default = MyView;
+}, 467, null, "ReactNativeDemo/app/nativeComponents/MyView.js");
 __d(/* ReactNativeDemo/app/customeComponents/customeComponents.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.EyeBtn = exports.Hud = exports.TimerBtn = exports.LoginBtn = exports.OrangeBtn = undefined;
+exports.Global = exports.EyeBtn = exports.Hud = exports.TimerBtn = exports.LoginBtn = exports.OrangeBtn = undefined;
 
-var _OrangeBtn = require(471          ); // 471 = ./OrangeBtn
+var _OrangeBtn = require(477          ); // 477 = ./OrangeBtn
 
 var _OrangeBtn2 = babelHelpers.interopRequireDefault(_OrangeBtn);
 
-var _LoginBtn = require(472         ); // 472 = ./LoginBtn
+var _LoginBtn = require(478         ); // 478 = ./LoginBtn
 
 var _LoginBtn2 = babelHelpers.interopRequireDefault(_LoginBtn);
 
-var _TimerBtn = require(473         ); // 473 = ./TimerBtn
+var _TimerBtn = require(479         ); // 479 = ./TimerBtn
 
 var _TimerBtn2 = babelHelpers.interopRequireDefault(_TimerBtn);
 
-var _MyHUD = require(474      ); // 474 = ./MyHUD
+var _MyHUD = require(480      ); // 480 = ./MyHUD
 
 var _MyHUD2 = babelHelpers.interopRequireDefault(_MyHUD);
 
-var _EyeBtn = require(475       ); // 475 = ./EyeBtn
+var _EyeBtn = require(481       ); // 481 = ./EyeBtn
 
 var _EyeBtn2 = babelHelpers.interopRequireDefault(_EyeBtn);
+
+var _Global = require(470       ); // 470 = ./Global
+
+var _Global2 = babelHelpers.interopRequireDefault(_Global);
 
 var OrangeBtn = exports.OrangeBtn = _OrangeBtn2.default;
 
@@ -56718,7 +56194,9 @@ var TimerBtn = exports.TimerBtn = _TimerBtn2.default;
 var Hud = exports.Hud = _MyHUD2.default;
 
 var EyeBtn = exports.EyeBtn = _EyeBtn2.default;
-}, 470, null, "ReactNativeDemo/app/customeComponents/customeComponents.js");
+
+var Global = exports.Global = _Global2.default;
+}, 476, null, "ReactNativeDemo/app/customeComponents/customeComponents.js");
 __d(/* ReactNativeDemo/app/customeComponents/OrangeBtn.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
     value: true
 });
@@ -56789,7 +56267,7 @@ var styles = _reactNative.StyleSheet.create({
     }
 
 });
-}, 471, null, "ReactNativeDemo/app/customeComponents/OrangeBtn.js");
+}, 477, null, "ReactNativeDemo/app/customeComponents/OrangeBtn.js");
 __d(/* ReactNativeDemo/app/customeComponents/LoginBtn.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
     value: true
 });
@@ -56880,7 +56358,7 @@ var LoginBtn = function (_Component) {
 }(_react.Component);
 
 exports.default = LoginBtn;
-}, 472, null, "ReactNativeDemo/app/customeComponents/LoginBtn.js");
+}, 478, null, "ReactNativeDemo/app/customeComponents/LoginBtn.js");
 __d(/* ReactNativeDemo/app/customeComponents/TimerBtn.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
     value: true
 });
@@ -56974,21 +56452,21 @@ var TimerBtn = function (_Component) {
                     disabled: this.state.disabled,
                     onPress: this.props.onPress, __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 67
+                        lineNumber: 68
                     }
                 },
                 _react2.default.createElement(
                     _reactNative.View,
                     { style: [styles.container, this.props.style], __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 73
+                            lineNumber: 74
                         }
                     },
                     _react2.default.createElement(
                         _reactNative.Text,
                         { style: this.textStyle, __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 74
+                                lineNumber: 75
                             }
                         },
                         isRunning ? this.state.totalCount + 's' : defaultTitle
@@ -57020,7 +56498,7 @@ var styles = _reactNative.StyleSheet.create({
     }
 
 });
-}, 473, null, "ReactNativeDemo/app/customeComponents/TimerBtn.js");
+}, 479, null, "ReactNativeDemo/app/customeComponents/TimerBtn.js");
 __d(/* ReactNativeDemo/app/customeComponents/MyHUD.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
     value: true
 });
@@ -57300,7 +56778,7 @@ var styles = _reactNative.StyleSheet.create({
     }
 
 });
-}, 474, null, "ReactNativeDemo/app/customeComponents/MyHUD.js");
+}, 480, null, "ReactNativeDemo/app/customeComponents/MyHUD.js");
 __d(/* ReactNativeDemo/app/customeComponents/EyeBtn.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
     value: true
 });
@@ -57314,8 +56792,8 @@ var _reactNative = require(26            ); // 26 = react-native
 
 var _propTypes = require(19          ); // 19 = prop-types
 
-var defaultImg = require(476                                   ); // 476 = ../img/icon_tabbar_mine_selected.png
-var selectImg = require(477                          ); // 477 = ../img/icon_tabbar_mine.png
+var defaultImg = require(482                                   ); // 482 = ../img/icon_tabbar_mine_selected.png
+var selectImg = require(483                          ); // 483 = ../img/icon_tabbar_mine.png
 
 var EyeBtn = function (_Component) {
     babelHelpers.inherits(EyeBtn, _Component);
@@ -57396,11 +56874,1334 @@ var styles = _reactNative.StyleSheet.create({
     }
 
 });
-}, 475, null, "ReactNativeDemo/app/customeComponents/EyeBtn.js");
+}, 481, null, "ReactNativeDemo/app/customeComponents/EyeBtn.js");
 __d(/* ReactNativeDemo/app/img/icon_tabbar_mine_selected.png */function(global, require, module, exports) {module.exports=require(258                                         ).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/app/img","width":52,"height":52,"scales":[1],"hash":"0fc1723d6a0f2dcc509ece7810060ed1","name":"icon_tabbar_mine_selected","type":"png"}); // 258 = react-native/Libraries/Image/AssetRegistry
-}, 476, null, "ReactNativeDemo/app/img/icon_tabbar_mine_selected.png");
+}, 482, null, "ReactNativeDemo/app/img/icon_tabbar_mine_selected.png");
 __d(/* ReactNativeDemo/app/img/icon_tabbar_mine.png */function(global, require, module, exports) {module.exports=require(258                                         ).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/app/img","width":52,"height":52,"scales":[1],"hash":"466d9eaeb35cd52987c5e2acb4179f93","name":"icon_tabbar_mine","type":"png"}); // 258 = react-native/Libraries/Image/AssetRegistry
-}, 477, null, "ReactNativeDemo/app/img/icon_tabbar_mine.png");
+}, 483, null, "ReactNativeDemo/app/img/icon_tabbar_mine.png");
+__d(/* ReactNativeDemo/app/customeComponents/Global.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = require(12     ); // 12 = react
+
+var _react2 = babelHelpers.interopRequireDefault(_react);
+
+require(26            ); // 26 = react-native
+
+var _MyStorage = require(471          ); // 471 = ./MyStorage
+
+var _MyStorage2 = babelHelpers.interopRequireDefault(_MyStorage);
+
+var Global = function (_Component) {
+    babelHelpers.inherits(Global, _Component);
+
+    function Global() {
+        babelHelpers.classCallCheck(this, Global);
+        return babelHelpers.possibleConstructorReturn(this, (Global.__proto__ || Object.getPrototypeOf(Global)).apply(this, arguments));
+    }
+
+    babelHelpers.createClass(Global, null, [{
+        key: 'isInit',
+        value: function isInit() {}
+    }]);
+    return Global;
+}(_react.Component);
+
+Global.saveInfo = function (key, data) {
+    _MyStorage2.default.save({
+        key: key,
+        data: data,
+
+        expires: null });
+};
+
+Global.getInfo = function (key) {
+    _MyStorage2.default.load({
+        key: key,
+
+        autoSync: true,
+
+        syncInBackground: true,
+
+        syncParams: {
+            extraFetchOptions: {},
+            someFlag: true
+        }
+    }).then(function (ret) {
+        return ret;
+    }).catch(function (err) {
+        switch (err.name) {
+            case 'NotFoundError':
+                break;
+            case 'ExpiredError':
+                break;
+        }
+        return null;
+    });
+};
+
+Global.getIdsForKey = function (key) {
+    _MyStorage2.default.getIdsForKey(key).then(function (ids) {
+        return ids;
+    });
+};
+
+Global.getAllDataForKey = function (key) {
+    _MyStorage2.default.getAllDataForKey(key).then(function (info) {
+        return info;
+    });
+};
+
+Global.deleAllInfoForKey = function (key) {
+    _MyStorage2.default.clearMapForKey(key);
+};
+
+Global.deleInfoForKey = function (key) {
+    _MyStorage2.default.remove({
+        key: key
+    });
+};
+
+Global.deleInfoForKeyAndId = function (key, id) {
+    _MyStorage2.default.remove({
+        key: key,
+        id: id
+    });
+};
+
+exports.default = Global;
+}, 470, null, "ReactNativeDemo/app/customeComponents/Global.js");
+__d(/* ReactNativeDemo/app/customeComponents/MyStorage.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = require(12     ); // 12 = react
+
+var _react2 = babelHelpers.interopRequireDefault(_react);
+
+var _reactNative = require(26            ); // 26 = react-native
+
+var _reactNativeStorage = require(472                   ); // 472 = react-native-storage
+
+var _reactNativeStorage2 = babelHelpers.interopRequireDefault(_reactNativeStorage);
+
+var storage = new _reactNativeStorage2.default({
+    size: 1000,
+
+    storageBackend: _reactNative.AsyncStorage,
+
+    defaultExpires: 1000 * 3600 * 24,
+
+    enableCache: true,
+
+    sync: {}
+});
+
+exports.default = storage;
+}, 471, null, "ReactNativeDemo/app/customeComponents/MyStorage.js");
+__d(/* react-native-storage/storage.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _error = require(473      ); // 473 = ./error
+
+var Storage = function () {
+  function Storage() {
+    var _this = this;
+
+    var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    babelHelpers.classCallCheck(this, Storage);
+
+    this._SIZE = options.size || 1000;
+    this.sync = options.sync || {};
+    this.defaultExpires = options.defaultExpires !== undefined ? options.defaultExpires : 1000 * 3600 * 24;
+    this.enableCache = options.enableCache !== false;
+    this._s = options.storageBackend || null;
+    this._innerVersion = 11;
+    this.cache = {};
+
+    if (this._s && this._s.setItem) {
+      try {
+        var promiseTest = this._s.setItem('__react_native_storage_test', 'test');
+        this.isPromise = !!(promiseTest && promiseTest.then);
+      } catch (e) {
+        console.warn(e);
+        delete this._s;
+        throw e;
+      }
+    } else {
+      console.warn('Data would be lost after reload cause there is no storageBackend specified!\n      \nEither use localStorage(for web) or AsyncStorage(for React Native) as a storageBackend.');
+    }
+
+    this._mapPromise = this.getItem('map').then(function (map) {
+      _this._m = _this._checkMap(map && JSON.parse(map) || {});
+    });
+  }
+
+  babelHelpers.createClass(Storage, [{
+    key: 'getItem',
+    value: function getItem(key) {
+      return this._s ? this.isPromise ? this._s.getItem(key) : Promise.resolve(this._s.getItem(key)) : Promise.resolve();
+    }
+  }, {
+    key: 'setItem',
+    value: function setItem(key, value) {
+      return this._s ? this.isPromise ? this._s.setItem(key, value) : Promise.resolve(this._s.setItem(key, value)) : Promise.resolve();
+    }
+  }, {
+    key: 'removeItem',
+    value: function removeItem(key) {
+      return this._s ? this.isPromise ? this._s.removeItem(key) : Promise.resolve(this._s.removeItem(key)) : Promise.resolve();
+    }
+  }, {
+    key: '_initMap',
+    value: function _initMap() {
+      return {
+        innerVersion: this._innerVersion,
+        index: 0,
+        __keys__: {}
+      };
+    }
+  }, {
+    key: '_checkMap',
+    value: function _checkMap(map) {
+      if (map && map.innerVersion && map.innerVersion === this._innerVersion) {
+        return map;
+      } else {
+        return this._initMap();
+      }
+    }
+  }, {
+    key: '_getId',
+    value: function _getId(key, id) {
+      return key + '_' + id;
+    }
+  }, {
+    key: '_saveToMap',
+    value: function _saveToMap(params) {
+      var key = params.key,
+          id = params.id,
+          data = params.data,
+          newId = this._getId(key, id),
+          m = this._m;
+
+      if (m[newId] !== undefined) {
+        if (this.enableCache) this.cache[newId] = JSON.parse(data);
+        return this.setItem('map_' + m[newId], data);
+      }
+      if (m[m.index] !== undefined) {
+        var oldId = m[m.index];
+        var splitOldId = oldId.split('_');
+        delete m[oldId];
+        this._removeIdInKey(splitOldId[0], splitOldId[1]);
+        if (this.enableCache) {
+          delete this.cache[oldId];
+        }
+      }
+      m[newId] = m.index;
+      m[m.index] = newId;
+
+      m.__keys__[key] = m.__keys__[key] || [];
+      m.__keys__[key].push(id);
+
+      if (this.enableCache) {
+        var cacheData = JSON.parse(data);
+        this.cache[newId] = cacheData;
+      }
+      var currentIndex = m.index;
+      if (++m.index === this._SIZE) {
+        m.index = 0;
+      }
+      this.setItem('map_' + currentIndex, data);
+      this.setItem('map', JSON.stringify(m));
+    }
+  }, {
+    key: 'save',
+    value: function save(params) {
+      var _this2 = this;
+
+      var key = params.key,
+          id = params.id,
+          data = params.data,
+          rawData = params.rawData,
+          _params$expires = params.expires,
+          expires = _params$expires === undefined ? this.defaultExpires : _params$expires;
+
+      if (key.toString().indexOf('_') !== -1) {
+        console.error('Please do not use "_" in key!');
+      }
+      var dataToSave = { rawData: data };
+      if (data === undefined) {
+        if (rawData !== undefined) {
+          console.warn('"rawData" is deprecated, please use "data" instead!');
+          dataToSave.rawData = rawData;
+        } else {
+          console.error('"data" is required in save()!');
+          return;
+        }
+      }
+      var now = new Date().getTime();
+      if (expires !== null) {
+        dataToSave.expires = now + expires;
+      }
+      dataToSave = JSON.stringify(dataToSave);
+      if (id === undefined) {
+        if (this.enableCache) {
+          var cacheData = JSON.parse(dataToSave);
+          this.cache[key] = cacheData;
+        }
+        return this.setItem(key, dataToSave);
+      } else {
+        if (id.toString().indexOf('_') !== -1) {
+          console.error('Please do not use "_" in id!');
+        }
+        return this._mapPromise.then(function () {
+          return _this2._saveToMap({
+            key: key,
+            id: id,
+            data: dataToSave
+          });
+        });
+      }
+    }
+  }, {
+    key: 'getBatchData',
+    value: function getBatchData(querys) {
+      var tasks = [];
+      for (var i = 0, query; query = querys[i]; i++) {
+        tasks[i] = this.load(query);
+      }
+      return Promise.all(tasks);
+    }
+  }, {
+    key: 'getBatchDataWithIds',
+    value: function getBatchDataWithIds(params) {
+      var _this3 = this;
+
+      var key = params.key,
+          ids = params.ids,
+          syncInBackground = params.syncInBackground;
+
+
+      return Promise.all(ids.map(function (id) {
+        return _this3.load({ key: key, id: id, syncInBackground: syncInBackground, autoSync: false, batched: true });
+      })).then(function (results) {
+        return new Promise(function (resolve, reject) {
+          var ids = results.filter(function (value) {
+            return value.syncId !== undefined;
+          });
+          if (!ids.length) {
+            return resolve();
+          }
+          return _this3.sync[key]({
+            id: ids.map(function (value) {
+              return value.syncId;
+            }),
+            resolve: resolve,
+            reject: reject
+          });
+        }).then(function (data) {
+          return results.map(function (value) {
+            return value.syncId ? data.shift() : value;
+          });
+        });
+      });
+    }
+  }, {
+    key: '_lookupGlobalItem',
+    value: function _lookupGlobalItem(params) {
+      var _this4 = this;
+
+      var ret = void 0;
+      var key = params.key;
+
+      if (this.enableCache && this.cache[key] !== undefined) {
+        ret = this.cache[key];
+        return this._loadGlobalItem(babelHelpers.extends({ ret: ret }, params));
+      }
+      return this.getItem(key).then(function (ret) {
+        return _this4._loadGlobalItem(babelHelpers.extends({ ret: ret }, params));
+      });
+    }
+  }, {
+    key: '_loadGlobalItem',
+    value: function _loadGlobalItem(params) {
+      var _this5 = this;
+
+      var key = params.key,
+          ret = params.ret,
+          autoSync = params.autoSync,
+          syncInBackground = params.syncInBackground,
+          syncParams = params.syncParams;
+
+      if (ret === null || ret === undefined) {
+        if (autoSync && this.sync[key]) {
+          return new Promise(function (resolve, reject) {
+            return _this5.sync[key]({ resolve: resolve, reject: reject, syncParams: syncParams });
+          });
+        }
+        return Promise.reject(new _error.NotFoundError(JSON.stringify(params)));
+      }
+      if (typeof ret === 'string') {
+        ret = JSON.parse(ret);
+        if (this.enableCache) {
+          this.cache[key] = ret;
+        }
+      }
+      var now = new Date().getTime();
+      if (ret.expires < now) {
+        if (autoSync && this.sync[key]) {
+          if (syncInBackground) {
+            this.sync[key]({ syncParams: syncParams });
+            return Promise.resolve(ret.rawData);
+          }
+          return new Promise(function (resolve, reject) {
+            return _this5.sync[key]({ resolve: resolve, reject: reject, syncParams: syncParams });
+          });
+        }
+        return Promise.reject(new _error.ExpiredError(JSON.stringify(params)));
+      }
+      return Promise.resolve(ret.rawData);
+    }
+  }, {
+    key: '_noItemFound',
+    value: function _noItemFound(params) {
+      var _this6 = this;
+
+      var key = params.key,
+          id = params.id,
+          autoSync = params.autoSync,
+          syncParams = params.syncParams;
+
+      if (this.sync[key]) {
+        if (autoSync) {
+          return new Promise(function (resolve, reject) {
+            return _this6.sync[key]({ id: id, syncParams: syncParams, resolve: resolve, reject: reject });
+          });
+        }
+        return Promise.resolve({ syncId: id });
+      }
+      return Promise.reject(new _error.NotFoundError(JSON.stringify(params)));
+    }
+  }, {
+    key: '_loadMapItem',
+    value: function _loadMapItem(params) {
+      var _this7 = this;
+
+      var ret = params.ret,
+          key = params.key,
+          id = params.id,
+          autoSync = params.autoSync,
+          batched = params.batched,
+          syncInBackground = params.syncInBackground,
+          syncParams = params.syncParams;
+
+      if (ret === null || ret === undefined) {
+        return this._noItemFound(params);
+      }
+      if (typeof ret === 'string') {
+        ret = JSON.parse(ret);
+        var _key = params.key,
+            _id = params.id;
+
+        var newId = this._getId(_key, _id);
+        if (this.enableCache) {
+          this.cache[newId] = ret;
+        }
+      }
+      var now = new Date().getTime();
+      if (ret.expires < now) {
+        if (autoSync && this.sync[key]) {
+          if (syncInBackground) {
+            this.sync[key]({ id: id, syncParams: syncParams });
+            return Promise.resolve(ret.rawData);
+          }
+          return new Promise(function (resolve, reject) {
+            return _this7.sync[key]({ id: id, resolve: resolve, reject: reject, syncParams: syncParams });
+          });
+        }
+        if (batched) {
+          return Promise.resolve({ syncId: id });
+        }
+        return Promise.reject(new _error.ExpiredError(JSON.stringify(params)));
+      }
+      return Promise.resolve(ret.rawData);
+    }
+  }, {
+    key: '_lookUpInMap',
+    value: function _lookUpInMap(params) {
+      var _this8 = this;
+
+      var m = this._m,
+          ret = void 0;
+      var key = params.key,
+          id = params.id;
+
+      var newId = this._getId(key, id);
+      if (this.enableCache && this.cache[newId]) {
+        ret = this.cache[newId];
+        return this._loadMapItem(babelHelpers.extends({ ret: ret }, params));
+      }
+      if (m[newId] !== undefined) {
+        return this.getItem('map_' + m[newId]).then(function (ret) {
+          return _this8._loadMapItem(babelHelpers.extends({ ret: ret }, params));
+        });
+      }
+      return this._noItemFound(babelHelpers.extends({ ret: ret }, params));
+    }
+  }, {
+    key: 'remove',
+    value: function remove(params) {
+      var _this9 = this;
+
+      return this._mapPromise.then(function () {
+        var m = _this9._m;
+        var key = params.key,
+            id = params.id;
+
+
+        if (id === undefined) {
+          if (_this9.enableCache && _this9.cache[key]) {
+            delete _this9.cache[key];
+          }
+          return _this9.removeItem(key);
+        }
+        var newId = _this9._getId(key, id);
+
+        if (m[newId] !== undefined) {
+          if (_this9.enableCache && _this9.cache[newId]) {
+            delete _this9.cache[newId];
+          }
+          _this9._removeIdInKey(key, id);
+          var idTobeDeleted = m[newId];
+          delete m[newId];
+          _this9.setItem('map', JSON.stringify(m));
+          return _this9.removeItem('map_' + idTobeDeleted);
+        }
+      });
+    }
+  }, {
+    key: '_removeIdInKey',
+    value: function _removeIdInKey(key, id) {
+      var indexTobeRemoved = (this._m.__keys__[key] || []).indexOf(id);
+      if (indexTobeRemoved !== -1) {
+        this._m.__keys__[key].splice(indexTobeRemoved, 1);
+      }
+    }
+  }, {
+    key: 'load',
+    value: function load(params) {
+      var _this10 = this;
+
+      var key = params.key,
+          id = params.id,
+          _params$autoSync = params.autoSync,
+          autoSync = _params$autoSync === undefined ? true : _params$autoSync,
+          _params$syncInBackgro = params.syncInBackground,
+          syncInBackground = _params$syncInBackgro === undefined ? true : _params$syncInBackgro,
+          syncParams = params.syncParams;
+
+      return this._mapPromise.then(function () {
+        return new Promise(function (resolve, reject) {
+          if (id === undefined) {
+            return resolve(_this10._lookupGlobalItem({
+              key: key, resolve: resolve, reject: reject, autoSync: autoSync, syncInBackground: syncInBackground, syncParams: syncParams
+            }));
+          }
+          return resolve(_this10._lookUpInMap({
+            key: key, id: id, resolve: resolve, reject: reject, autoSync: autoSync, syncInBackground: syncInBackground, syncParams: syncParams
+          }));
+        });
+      });
+    }
+  }, {
+    key: 'clearMap',
+    value: function clearMap() {
+      var _this11 = this;
+
+      this.removeItem('map').then(function () {
+        _this11._m = _this11._initMap();
+      });
+    }
+  }, {
+    key: 'clearMapForKey',
+    value: function clearMapForKey(key) {
+      var _this12 = this;
+
+      return this._mapPromise.then(function () {
+        var tasks = (_this12._m.__keys__[key] || []).map(function (id) {
+          return _this12.remove({ key: key, id: id });
+        });
+        return Promise.all(tasks);
+      });
+    }
+  }, {
+    key: 'getIdsForKey',
+    value: function getIdsForKey(key) {
+      var _this13 = this;
+
+      return this._mapPromise.then(function () {
+        return _this13._m.__keys__[key] || [];
+      });
+    }
+  }, {
+    key: 'getAllDataForKey',
+    value: function getAllDataForKey(key, options) {
+      var _this14 = this;
+
+      options = babelHelpers.extends({ syncInBackground: true }, options);
+      return this.getIdsForKey(key).then(function (ids) {
+        var querys = ids.map(function (id) {
+          return { key: key, id: id, syncInBackground: options.syncInBackground };
+        });
+        return _this14.getBatchData(querys);
+      });
+    }
+  }]);
+  return Storage;
+}();
+
+exports.default = Storage;
+}, 472, null, "react-native-storage/storage.js");
+__d(/* react-native-storage/error.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var NotFoundError = exports.NotFoundError = function NotFoundError(message) {
+  babelHelpers.classCallCheck(this, NotFoundError);
+
+  this.name = 'NotFoundError';
+  this.message = 'Not Found! Params: ' + message;
+  this.stack = new Error().stack;
+};
+
+var ExpiredError = exports.ExpiredError = function ExpiredError(message) {
+  babelHelpers.classCallCheck(this, ExpiredError);
+
+  this.name = 'ExpiredError';
+  this.message = 'Expired! Params: ' + message;
+  this.stack = new Error().stack;
+};
+}, 473, null, "react-native-storage/error.js");
+__d(/* ReactNativeDemo/app/mine/Login.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var _jsxFileName = '/Users/jingnanzhang/Desktop/ReactNativeDemo/ReactNativeDemo/app/mine/Login.js';
+
+var _react = require(12     ); // 12 = react
+
+var _react2 = babelHelpers.interopRequireDefault(_react);
+
+var _reactNative = require(26            ); // 26 = react-native
+
+var _NavigationBar = require(469                                 ); // 469 = ../customeComponents/NavigationBar
+
+var _NavigationBar2 = babelHelpers.interopRequireDefault(_NavigationBar);
+
+var _Const = require(465             ); // 465 = ../const/Const
+
+var conster = babelHelpers.interopRequireWildcard(_Const);
+
+var _customeComponents = require(476                                     ); // 476 = ../customeComponents/customeComponents
+
+var Login = function (_Component) {
+    babelHelpers.inherits(Login, _Component);
+
+    function Login() {
+        babelHelpers.classCallCheck(this, Login);
+        return babelHelpers.possibleConstructorReturn(this, (Login.__proto__ || Object.getPrototypeOf(Login)).apply(this, arguments));
+    }
+
+    babelHelpers.createClass(Login, [{
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                _reactNative.View,
+                {
+                    style: styles.container, __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 37
+                    }
+                },
+                _react2.default.createElement(_reactNative.Button, {
+                    title: '\u9032\u5165\u9996\u9801',
+                    onPress: this.loadHomePage.bind(this),
+                    __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 39
+                    }
+                })
+            );
+        }
+    }, {
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            conster.width = 200;
+
+            _customeComponents.Global.saveInfo(conster.saveUserkey, { name: 'zzz', id: '111' });
+        }
+    }, {
+        key: 'loadHomePage',
+        value: function loadHomePage() {
+            this.props.navigation.dispatch(conster.resetMainPageAction);
+        }
+    }]);
+    return Login;
+}(_react.Component);
+
+Login.navigationOptions = {
+    headerTitle: '登录页',
+    headerTintColor: '#993311'
+
+};
+exports.default = Login;
+
+
+var styles = _reactNative.StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
+    }
+
+});
+}, 468, null, "ReactNativeDemo/app/mine/Login.js");
+__d(/* ReactNativeDemo/app/customeComponents/NavigationBar.js */function(global, require, module, exports) {var _jsxFileName = '/Users/jingnanzhang/Desktop/ReactNativeDemo/ReactNativeDemo/app/customeComponents/NavigationBar.js';
+
+var _react = require(12     ); // 12 = react
+
+var _react2 = babelHelpers.interopRequireDefault(_react);
+
+var _reactNative = require(26            ); // 26 = react-native
+
+var _reactNavigation = require(404               ); // 404 = react-navigation
+
+var StackOptions = function StackOptions(_ref) {
+    var headerTitle = _ref.headerTitle;
+
+    var visible = true;
+    var header = void 0;
+    if (visible === false) {
+        header = null;
+    }
+    var headerStyle = { backgroundColor: '#4ECBFC' };
+    var headerTitle = headerTitle;
+    var headerTitleStyle = { fontSize: 20, color: 'white', fontWeight: '500' };
+    var headerBackTitle = false;
+    var headerLeft = _react2.default.createElement(_reactNative.Button, {
+        title: '左边',
+        __source: {
+            fileName: _jsxFileName,
+            lineNumber: 34
+        }
+    });
+    return { headerStyle: headerStyle, headerTitle: headerTitle, headerTitleStyle: headerTitleStyle, headerBackTitle: headerBackTitle, headerLeft: headerLeft, header: header };
+};
+
+module.exports = StackOptions;
+}, 469, null, "ReactNativeDemo/app/customeComponents/NavigationBar.js");
+__d(/* ReactNativeDemo/app/main/TabBarItem.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var _jsxFileName = '/Users/jingnanzhang/Desktop/ReactNativeDemo/ReactNativeDemo/app/main/TabBarItem.js';
+
+var _react = require(12     ); // 12 = react
+
+var _react2 = babelHelpers.interopRequireDefault(_react);
+
+var _reactNative = require(26            ); // 26 = react-native
+
+var TabBarItem = function (_Component) {
+  babelHelpers.inherits(TabBarItem, _Component);
+
+  function TabBarItem() {
+    babelHelpers.classCallCheck(this, TabBarItem);
+    return babelHelpers.possibleConstructorReturn(this, (TabBarItem.__proto__ || Object.getPrototypeOf(TabBarItem)).apply(this, arguments));
+  }
+
+  babelHelpers.createClass(TabBarItem, [{
+    key: 'render',
+    value: function render() {
+      var selectedImage = this.props.focused ? this.props.selectedImage : this.props.normalImage;
+      return _react2.default.createElement(_reactNative.Image, {
+        source: selectedImage,
+        style: { tintColor: this.props.tintColor, width: 25, height: 25 },
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 10
+        }
+      });
+    }
+  }]);
+  return TabBarItem;
+}(_react.Component);
+
+exports.default = TabBarItem;
+}, 474, null, "ReactNativeDemo/app/main/TabBarItem.js");
+__d(/* ReactNativeDemo/app/mine/MineDetail.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var _jsxFileName = '/Users/jingnanzhang/Desktop/ReactNativeDemo/ReactNativeDemo/app/mine/MineDetail.js';
+
+var _react = require(12     ); // 12 = react
+
+var _react2 = babelHelpers.interopRequireDefault(_react);
+
+var _reactNative = require(26            ); // 26 = react-native
+
+var _customeComponents = require(476                                     ); // 476 = ../customeComponents/customeComponents
+
+var _Const = require(465             ); // 465 = ../const/Const
+
+var conster = babelHelpers.interopRequireWildcard(_Const);
+
+
+var font_size = 15;
+var font_color = '#333333';
+var font_orangeCl = '#FF5A00';
+var protocolColor = '#999999';
+var margin = 10;
+var leftTextWidth = 50;
+var top = 20;
+var topViewH = 210 - 2 * top;
+
+var MineDetail = function (_Component) {
+    babelHelpers.inherits(MineDetail, _Component);
+
+    function MineDetail(props) {
+        babelHelpers.classCallCheck(this, MineDetail);
+
+        var _this = babelHelpers.possibleConstructorReturn(this, (MineDetail.__proto__ || Object.getPrototypeOf(MineDetail)).call(this, props));
+
+        _this.constGlobal = {
+            phoneHint: '请输入手机号码',
+            verCodeHint: '请输入验证码',
+            pwdHint: '密码须含有数字和字母，6-20位'
+        };
+        _this.keyboardState = {
+            behavior: 'position',
+            modalOpen: false,
+
+            underlineColorAndroid: 'transparent'
+        };
+        _this.phoneInputState = {
+            keyboardType: 'numeric',
+            maxLength: 11,
+            clearButtonMode: 'while-editing',
+            underlineColorAndroid: 'transparent' };
+        _this.pwdInputState = {
+            maxLength: 20,
+            clearButtonMode: 'while-editing' };
+        _this.data = {
+
+            phone: '',
+            verCode: '',
+            pwd: ''
+        };
+
+        _this.setSubviews = function () {
+            return _react2.default.createElement(
+                _reactNative.View,
+                { style: styles.mainContainer, __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 124
+                    }
+                },
+                _react2.default.createElement(
+                    _reactNative.ScrollView,
+                    {
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 126
+                        }
+                    },
+                    _react2.default.createElement(
+                        _reactNative.View,
+                        { style: styles.contentView, __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 129
+                            }
+                        },
+                        _react2.default.createElement(_reactNative.TouchableOpacity, { activeOpacity: 1.0, onPress: _this.dismissKeyboardClick.bind(_this), __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 130
+                            }
+                        }),
+                        _react2.default.createElement(
+                            _reactNative.KeyboardAvoidingView,
+                            {
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 133
+                                }
+                            },
+                            _react2.default.createElement(
+                                _reactNative.View,
+                                { style: styles.topView, __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 141
+                                    }
+                                },
+                                _react2.default.createElement(
+                                    _reactNative.View,
+                                    { style: styles.phoneView, __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 146
+                                        }
+                                    },
+                                    _react2.default.createElement(
+                                        _reactNative.Text,
+                                        { style: styles.phoneText, __source: {
+                                                fileName: _jsxFileName,
+                                                lineNumber: 147
+                                            }
+                                        },
+                                        '\u624B\u673A\u53F7'
+                                    ),
+                                    _react2.default.createElement(_reactNative.TextInput, {
+                                        placeholder: _this.constGlobal.phoneHint,
+                                        keyboardType: _this.phoneInputState.keyboardType,
+                                        underlineColorAndroid: _this.phoneInputState.underlineColorAndroid,
+                                        maxLength: _this.phoneInputState.maxLength,
+                                        clearButtonMode: _this.phoneInputState.clearButtonMode,
+                                        style: styles.phoneInput,
+                                        onChangeText: function onChangeText(phone) {
+                                            return _this.handlePhoneFieldChange(phone);
+                                        },
+                                        __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 149
+                                        }
+                                    }),
+                                    _react2.default.createElement(_customeComponents.TimerBtn, { ref: function ref(timer) {
+                                            return _this.timer = timer;
+                                        },
+                                        onPress: _this.verCodeBtnACtion,
+                                        style: styles.timerBtn,
+                                        __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 160
+                                        }
+                                    })
+                                ),
+                                _react2.default.createElement(
+                                    _reactNative.View,
+                                    { style: styles.verCodeView, __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 169
+                                        }
+                                    },
+                                    _react2.default.createElement(
+                                        _reactNative.Text,
+                                        { title: '\u9A8C\u8BC1\u7801', style: styles.verCodeText, __source: {
+                                                fileName: _jsxFileName,
+                                                lineNumber: 170
+                                            }
+                                        },
+                                        '\u9A8C\u8BC1\u7801'
+                                    ),
+                                    _react2.default.createElement(_reactNative.TextInput, {
+                                        placeholder: _this.constGlobal.verCodeHint,
+                                        keyboardType: _this.phoneInputState.keyboardType,
+                                        underlineColorAndroid: _this.phoneInputState.underlineColorAndroid,
+                                        maxLength: 6,
+                                        clearButtonMode: _this.phoneInputState.clearButtonMode,
+                                        style: styles.verCodeInput,
+                                        onChangeText: function onChangeText(verCode) {
+                                            return _this.handleVerCodeFieldChange(verCode);
+                                        },
+                                        __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 171
+                                        }
+                                    })
+                                ),
+                                _react2.default.createElement(
+                                    _reactNative.View,
+                                    { style: styles.pwdView, __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 183
+                                        }
+                                    },
+                                    _react2.default.createElement(
+                                        _reactNative.Text,
+                                        { text: '\u5BC6\u7801', style: styles.pwdText, __source: {
+                                                fileName: _jsxFileName,
+                                                lineNumber: 184
+                                            }
+                                        },
+                                        '\u5BC6\u7801'
+                                    ),
+                                    _react2.default.createElement(_reactNative.TextInput, {
+                                        ref: function ref(pwdInput) {
+                                            return _this.pwdInput = pwdInput;
+                                        },
+                                        placeholder: _this.constGlobal.pwdHint,
+                                        underlineColorAndroid: _this.phoneInputState.underlineColorAndroid,
+                                        keyboardType: _this.pwdInputState.keyboardType,
+                                        maxLength: _this.pwdInputState.maxLength,
+                                        secureTextEntry: !_this.state.pwdVisiable,
+                                        clearButtonMode: _this.phoneInputState.clearButtonMode,
+                                        style: styles.pwdInput,
+                                        onChangeText: function onChangeText(pwd) {
+                                            return _this.handlePwdFieldChange(pwd);
+                                        },
+                                        __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 185
+                                        }
+                                    }),
+                                    _react2.default.createElement(_customeComponents.EyeBtn, { ref: function ref(eyeBtn) {
+                                            return _this.eyeBtn = eyeBtn;
+                                        }, cliclkCallBack: _this.eyeBtnAction.bind(_this), __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 197
+                                        }
+                                    })
+                                )
+                            ),
+                            _react2.default.createElement(
+                                _reactNative.View,
+                                { style: styles.centeView, __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 208
+                                    }
+                                },
+                                _react2.default.createElement(_customeComponents.LoginBtn, {
+                                    ref: function ref(loginBtn) {
+                                        return _this.loginBtn = loginBtn;
+                                    },
+                                    title: '\u7ACB\u5373\u6CE8\u518C',
+                                    onPress: _this.registAction.bind(_this), __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 210
+                                    }
+                                }),
+                                _react2.default.createElement(
+                                    _reactNative.View,
+                                    { style: styles.protocolView, __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 216
+                                        }
+                                    },
+                                    _react2.default.createElement(
+                                        _reactNative.Text,
+                                        { style: styles.protocolText, __source: {
+                                                fileName: _jsxFileName,
+                                                lineNumber: 217
+                                            }
+                                        },
+                                        '\u6CE8\u518C\u5373\u4EE3\u8868\u540C\u610F\u300A'
+                                    ),
+                                    _react2.default.createElement(_customeComponents.OrangeBtn, { title: 'Q\u6613\u501F\u670D\u52A1\u534F\u8BAE',
+                                        onPress: _this.protocolClickAction, __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 220
+                                        }
+                                    }),
+                                    _react2.default.createElement(
+                                        _reactNative.Text,
+                                        { style: styles.protocolText, __source: {
+                                                fileName: _jsxFileName,
+                                                lineNumber: 223
+                                            }
+                                        },
+                                        '\u300B'
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                _reactNative.View,
+                                { style: styles.bottomView, __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 229
+                                    }
+                                },
+                                _react2.default.createElement(
+                                    _reactNative.Text,
+                                    { style: styles.haveAccountText, __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 230
+                                        }
+                                    },
+                                    '\u5DF2\u6709\u8D26\u53F7\uFF1F'
+                                ),
+                                _react2.default.createElement(_customeComponents.OrangeBtn, { title: '\u76F4\u63A5\u767B\u5F55',
+                                    onPress: _this.loginAction, __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 232
+                                    }
+                                })
+                            )
+                        )
+                    )
+                ),
+                _this.renderHUD()
+            );
+        };
+
+        _this.updateRegisteBtnState = function () {
+
+            if (this.data.phone.length != 0 && this.data.verCode.length != 0 && this.data.pwd.length != 0) {
+                this.loginBtn.setDisable(false);
+            } else {
+                this.loginBtn.setDisable(true);
+            }
+        };
+
+        _this.eyeBtnAction = function () {
+            _this.setState({
+                pwdVisiable: !_this.state.pwdVisiable
+            });
+        };
+
+        _this.verCodeBtnACtion = function () {
+            _this.delayTimer = setInterval(function () {
+                _this.timer.setStart();
+
+                clearTimeout(_this.delayTimer);
+            }, 1000 * 3);
+        };
+
+        _this.protocolClickAction = function () {};
+
+        _this.state = {
+            pwdVisiable: false
+        };
+
+        return _this;
+    }
+
+    babelHelpers.createClass(MineDetail, [{
+        key: 'render',
+        value: function render() {
+            return this.setSubviews();
+        }
+    }, {
+        key: 'componentDidMount',
+        value: function componentDidMount() {}
+    }, {
+        key: 'componentWillUnmount',
+        value: function componentWillUnmount() {
+            this.dismissKeyboardClick();
+        }
+    }, {
+        key: 'renderHUD',
+        value: function renderHUD() {
+            var _this2 = this;
+
+            return _react2.default.createElement(_customeComponents.Hud, { ref: function ref(hud) {
+                    return _this2.hud = hud;
+                }, text: '\u8FD9\u662F\u63D0\u793A\u5185\u5BB9\uFF0C\u8FD9\u662F\u63D0\u793A\u5185\u5BB9\u8FD9\u8FD9\u662F\u63D0\u793A-------\u5185\u5BB9\u8FD9\u662F\u63D0\u793A\u5185\u5BB9', __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 261
+                }
+            });
+        }
+    }, {
+        key: 'dismissKeyboardClick',
+        value: function dismissKeyboardClick() {}
+    }, {
+        key: 'handlePhoneFieldChange',
+        value: function handlePhoneFieldChange(phone) {
+            this.data.phone = phone;
+
+            console.log('手机号是' + this.data.phone);
+
+            if (this.data.phone.length != 0) {
+                this.timer.setDisable(false);
+            } else {
+                this.timer.setDisable(true);
+            }
+
+            this.updateRegisteBtnState();
+        }
+    }, {
+        key: 'handleVerCodeFieldChange',
+        value: function handleVerCodeFieldChange(verCode) {
+            this.data.verCode = verCode;
+            this.updateRegisteBtnState();
+        }
+    }, {
+        key: 'handlePwdFieldChange',
+        value: function handlePwdFieldChange(pwd) {
+            this.data.pwd = pwd;
+
+            if (this.data.pwd.length != 0) {
+                this.eyeBtn.setDisable(false);
+            } else {
+
+                this.eyeBtn.setDisable(true);
+            }
+
+            this.updateRegisteBtnState();
+        }
+    }, {
+        key: 'registAction',
+        value: function registAction() {
+            alert('手机号是：' + this.data.phone + '  验证码是：' + this.data.verCode + '  密码是：' + this.data.pwd);
+        }
+    }, {
+        key: 'loginAction',
+        value: function loginAction() {
+            alert('登录');
+        }
+    }]);
+    return MineDetail;
+}(_react.Component);
+
+MineDetail.navigationOptions = function (_ref) {
+    var navigation = _ref.navigation;
+    return {
+        headerBackTitle: '返回',
+        backButtonTitle: "由TestListView Push",
+        left: 'left'
+    };
+};
+
+MineDetail.constGlobal1 = function () {
+    return MineDetail.prototype.props.constGlobal;
+};
+
+exports.default = MineDetail;
+
+var styles = _reactNative.StyleSheet.create({
+
+    mainContainer: {
+        flex: 1,
+        backgroundColor: 'white'
+    },
+
+    contentView: {
+        flex: 1,
+        justifyContent: 'space-between'
+    },
+
+    topView: {
+        height: topViewH,
+        alignItems: 'center',
+        margin: 20,
+        marginTop: 50
+    },
+
+    timerBtn: {
+
+        marginLeft: 10,
+        marginRight: 0
+    },
+
+    phoneView: {
+        flex: 1,
+
+        borderBottomWidth: 1,
+        borderBottomColor: font_color,
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+
+    verCodeView: {
+        flex: 1,
+        marginTop: top,
+        borderBottomWidth: 1,
+        borderBottomColor: font_color,
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+
+    pwdView: {
+        flex: 1,
+        marginTop: top,
+        borderBottomWidth: 1,
+        borderBottomColor: font_color,
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+
+    phoneText: {
+        color: font_color,
+        fontSize: font_size,
+        width: leftTextWidth
+    },
+
+    verCodeText: {
+        color: font_color,
+        fontSize: font_size,
+        width: leftTextWidth
+    },
+
+    pwdText: {
+        color: font_color,
+        fontSize: font_size,
+        width: leftTextWidth
+    },
+
+    phoneInput: {
+        flex: 1,
+        color: font_color,
+        fontSize: font_size,
+        marginLeft: margin
+    },
+
+    verCodeInput: {
+        flex: 1,
+        color: font_color,
+        fontSize: font_size,
+        marginLeft: margin
+
+    },
+
+    pwdInput: {
+        flex: 1,
+        color: font_color,
+        fontSize: font_size,
+        marginLeft: margin
+    },
+
+    verCodeBtn: {
+        width: 90,
+        height: 40
+    },
+
+    centeView: {
+        top: 20,
+        height: 70,
+        justifyContent: 'center'
+    },
+
+    regisBtn: {
+        fontSize: 20,
+        color: 'orange'
+    },
+
+    protocolView: {
+        height: 20,
+        top: 15,
+        flexDirection: 'row',
+        justifyContent: 'center'
+    },
+
+    protocolText: {
+        color: protocolColor,
+        fontSize: 14,
+        alignSelf: 'center'
+    },
+
+    bottomView: {
+        height: 20,
+        marginTop: conster.height * (150 / 667),
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+
+    haveAccountText: {
+        color: protocolColor,
+        fontSize: 14
+    }
+
+});
+}, 475, null, "ReactNativeDemo/app/mine/MineDetail.js");
 __d(/* ReactNativeDemo/app/mine/TestListView.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
     value: true
 });
@@ -57422,6 +58223,8 @@ var ds = new _reactNative.ListView.DataSource({
         return s1 !== s2;
     }
 });
+
+var nx = null;
 
 var TestListView = function (_Component) {
     babelHelpers.inherits(TestListView, _Component);
@@ -57457,7 +58260,7 @@ var TestListView = function (_Component) {
         _this._renderSep = function () {
             return _react2.default.createElement(_reactNative.View, { style: styles.separator, __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 118
+                    lineNumber: 144
                 }
             });
         };
@@ -57467,17 +58270,27 @@ var TestListView = function (_Component) {
         };
 
         _this.clickItem = function (rowData, sectionId, rowId) {
-            alert('点击了：' + sectionId + '组,' + rowId + '行，' + '内容：' + rowData);
+            nx('MineDetail');
         };
 
         _this.state = {
             dataSource: ds.cloneWithRowsAndSections(_this.getDatas()),
-
-            isRefreshing: false,
+            title: '下拉开始刷新',
+            isRefreshing: true,
             isLoadMoreData: false,
             isNoMoreData: false
         };
 
+        setImmediate(function () {
+            _this.setState({
+                isRefreshing: false
+            });
+        }, 1000);
+
+        var navigate = _this.props.navigation.navigate;
+
+
+        nx = navigate;
         return _this;
     }
 
@@ -57501,14 +58314,14 @@ var TestListView = function (_Component) {
                 },
 
                 refreshControl: _react2.default.createElement(_reactNative.RefreshControl, {
-                    title: '下拉开始刷新',
+                    title: this.state.title,
 
                     refreshing: this.state.isRefreshing,
                     tintColor: 'red',
                     onRefresh: this.loadData.bind(this),
                     __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 88
+                        lineNumber: 113
                     }
                 }),
 
@@ -57517,7 +58330,7 @@ var TestListView = function (_Component) {
                 },
                 __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 79
+                    lineNumber: 104
                 }
             });
         }
@@ -57541,21 +58354,21 @@ var TestListView = function (_Component) {
                         return _this3.clickHeader(sectionId);
                     }, __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 123
+                        lineNumber: 149
                     }
                 },
                 _react2.default.createElement(
                     _reactNative.View,
                     { style: styles.sectionHeader, __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 125
+                            lineNumber: 151
                         }
                     },
                     _react2.default.createElement(
                         _reactNative.Text,
                         { style: styles.sectionText, __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 126
+                                lineNumber: 152
                             }
                         },
                         '第' + sectionId + '组'
@@ -57572,23 +58385,24 @@ var TestListView = function (_Component) {
                 _reactNative.TouchableOpacity,
                 { activeOpacity: 0.7, onPress: function onPress() {
                         return _this4.clickItem(rowData, sectionId, rowId);
-                    }, __source: {
+                    },
+                    __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 137
+                        lineNumber: 163
                     }
                 },
                 _react2.default.createElement(
                     _reactNative.View,
                     { style: styles.container, __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 138
+                            lineNumber: 166
                         }
                     },
                     _react2.default.createElement(
                         _reactNative.Text,
                         { style: styles.text, __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 139
+                                lineNumber: 167
                             }
                         },
                         rowData
@@ -57599,7 +58413,17 @@ var TestListView = function (_Component) {
     }, {
         key: '_onScroll',
         value: function _onScroll(scroller) {
-            console.log('---' + scroller.nativeEvent.pageY);
+
+            var offsetY = scroller.nativeEvent.contentOffset.y;
+            if (offsetY < 50) {
+                this.setState({
+                    title: '下拉开始刷新'
+                });
+            } else if (offsetY >= 50) {
+                this.setState({
+                    title: '松开立即刷新'
+                });
+            }
         }
     }, {
         key: '_onEndReached',
@@ -57612,7 +58436,6 @@ var TestListView = function (_Component) {
     }, {
         key: 'loadData',
         value: function loadData() {
-
             this.requestData(true);
         }
     }, {
@@ -57640,28 +58463,30 @@ var TestListView = function (_Component) {
             } else {
 
                 runNumber = 1;
-                loadDataTimer = setTimeout(function () {
+                this.setState({
+                    isRefreshing: true,
+                    isLoadMoreData: true
+                });
 
-                    clearloadDataTimer = setTimeout(function () {
-                        _this5.setState({
-                            isRefreshing: false
-                        });
-
-                        clearTimeout(clearloadDataTimer);
-                    }, 2500);
-
+                loadMoreDataTimer = setTimeout(function () {
                     _this5.setState({
-                        isRefreshing: true,
-                        isLoadMoreData: false
-                    });
+                        isRefreshing: false,
+                        isLoadMoreData: false,
+                        dataSource: ds.cloneWithRowsAndSections(_this5.getDatas()) });
+                    clearTimeout(loadMoreDataTimer);
                 }, 2000);
-
-                clearTimeout(loadDataTimer);
             }
         }
     }]);
     return TestListView;
 }(_react.Component);
+
+TestListView.navigationOptions = function (_ref) {
+    var navigation = _ref.navigation;
+    return {
+        title: '' + navigation.state.params.info
+    };
+};
 
 exports.default = TestListView;
 
@@ -57701,11 +58526,11 @@ var styles = _reactNative.StyleSheet.create({
     }
 
 });
-}, 478, null, "ReactNativeDemo/app/mine/TestListView.js");
+}, 484, null, "ReactNativeDemo/app/mine/TestListView.js");
 __d(/* ReactNativeDemo/app/img/icon_tabbar_misc.png */function(global, require, module, exports) {module.exports=require(258                                         ).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/app/img","width":52,"height":52,"scales":[1],"hash":"2112672398b668818990a6a91d1b0f33","name":"icon_tabbar_misc","type":"png"}); // 258 = react-native/Libraries/Image/AssetRegistry
-}, 479, null, "ReactNativeDemo/app/img/icon_tabbar_misc.png");
+}, 485, null, "ReactNativeDemo/app/img/icon_tabbar_misc.png");
 __d(/* ReactNativeDemo/app/img/icon_tabbar_misc_selected.png */function(global, require, module, exports) {module.exports=require(258                                         ).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/app/img","width":52,"height":52,"scales":[1],"hash":"2869d756113c32f6d0805d9f4f0cffbb","name":"icon_tabbar_misc_selected","type":"png"}); // 258 = react-native/Libraries/Image/AssetRegistry
-}, 480, null, "ReactNativeDemo/app/img/icon_tabbar_misc_selected.png");
+}, 486, null, "ReactNativeDemo/app/img/icon_tabbar_misc_selected.png");
 ;require(128);
 ;require(0);
 //# sourceMappingURL=index.ios.map

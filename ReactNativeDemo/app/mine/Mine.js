@@ -12,7 +12,11 @@ import {
 
 
 
+// Const的第一种方式  导入constant
+import  * as conster from  '../const/Const' // 导出Const.js里所有的变量和方法
 import MyView from '../nativeComponents/MyView'
+import {Global, }  from '../customeComponents/customeComponents';
+
 
 export default class  Mine extends  Component{
 
@@ -29,7 +33,7 @@ export default class  Mine extends  Component{
                     title="跳转"
                     onPress={() =>
                         // this.btnAction
-                        navigate('TestListView', { info: '由Mine传给其他页面' }) // TestListView   MineDetail
+                        navigate('MineDetail', { info: '由Mine传给其他页面' }) // TestListView   MineDetail
                     }
                 />
 
@@ -41,6 +45,39 @@ export default class  Mine extends  Component{
 
 
         )
+    }
+
+    componentDidMount(){
+        // this.testSet();
+
+        // 测试数据存取
+        let user =   Global.getInfo(conster.saveUserkey).then(user => {
+            alert(user.name)
+        }).catch(err => {
+            switch (err.name) {
+                case 'NotFoundError':
+                    // TODO;
+                    break;
+                case 'ExpiredError':
+                    // TODO
+                    break;
+            }
+            alert('getInfo----error')
+        });
+
+    }
+
+
+    testSet = () => {
+
+        const set = new Set([1, 2, 3, 4, 4]);
+        // alert([...set]) // 1,2,3,4
+        // alert(set.size) // 4
+
+        // let set = Set();
+        // set.add(1,'1', [1,2,3,3])
+        // [...set];
+
     }
 
 

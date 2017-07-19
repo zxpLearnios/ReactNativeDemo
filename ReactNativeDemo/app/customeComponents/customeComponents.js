@@ -20,5 +20,8 @@ export const Hud = MyHUDCmp;
 import EyeBtnCmp from './EyeBtn';
 export const EyeBtn = EyeBtnCmp;
 
+import GlobalCmp from './Global';
+export const Global = GlobalCmp;
+
 
 

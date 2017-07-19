@@ -37,10 +37,10 @@ export default class MyView extends Component {
                           }}
         />;
     }
-
+e
     componentDidMount(){
 
-        setTimeout(() => {
+        // setTimeout(() => {
             // 这样不能调用原生对外方法的，会crash
             // this.rv.sendInfoToNative('Rn传给ios的数据');
 
@@ -74,7 +74,9 @@ export default class MyView extends Component {
             // 5.
 
 
-        }, 2000)
+        // }, 2000)
+
+
 
     }
 

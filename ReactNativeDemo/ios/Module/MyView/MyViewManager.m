@@ -120,7 +120,7 @@ RCT_REMAP_METHOD(testPromisesEvent, name:(NSString *)testStr
 {
   NSString *promisesData = @"Promises数据"; // 准备回调回去的数据
   if (promisesData) {
-    resolve(testStr);
+    resolve(promisesData);
   } else {
     NSError *error=[NSError errorWithDomain:@"我是Promise回调错误信息..." code:101 userInfo:nil];
     reject(@"no_events", @"There were no events", error);

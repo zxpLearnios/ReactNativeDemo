@@ -4,7 +4,7 @@
 // 验证码按钮
 
 
-import  React, {Component} from 'react';
+import  React, {Component,} from 'react';
 
 import {
     TouchableWithoutFeedback,

@@ -20,11 +20,17 @@ const backAction = NavigationActions.back({
 
 
 // 第一种方式: 但是外部可以修改这个值
-export const width = Dimensions.get('window').width;
-export const height = Dimensions.get('window').height;
+const  kwidth = Dimensions.get('window').width;
+const kheight = Dimensions.get('window').height; // export
+const saveUserkey = 'saveUserkey=key'; // 不能使用'_'
 
-// resetAction 出栈
-export const resetAction = NavigationActions.reset({
+export {kwidth as width, kheight as height, saveUserkey}; // 可以使用as來重命名
+
+/*
+*  resetAction 出栈
+*  重新设置主页
+* **/
+export const resetMainPageAction = NavigationActions.reset({
     index: 0,
     actions: [
         NavigationActions.navigate({ routeName: 'TabPage'}) // AppTab  TabPage
@@ -33,14 +39,19 @@ export const resetAction = NavigationActions.reset({
 
 
 // 第二种方式
-// const  Const ={
-//
-//      width: Dimensions.get('window').width,
-//      height: Dimensions.get('window').height,
-//
-// };
-//
-// export  default  Const;
+const  Const ={
+
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
+
+};
+
+const  Const1 ={
+
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
+
+};
 
 
 
