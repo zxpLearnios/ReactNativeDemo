@@ -1,6 +1,8 @@
 /**
  * Created by jingnanzhang on 2017/5/31.
  */
+//
+
 import  React, {Component, } from 'react';
 import {
     Text,
