@@ -3,6 +3,10 @@
     android:versionCode="1"
     android:versionName="1.0">
 
+    <!--要请求访问地理位置的权限，你需要在AndroidManifest.xml文件中加入如下一行：-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
 

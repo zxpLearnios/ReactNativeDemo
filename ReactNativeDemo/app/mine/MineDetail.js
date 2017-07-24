@@ -42,7 +42,7 @@ export default  class MineDetail extends  Component{
 
     // 测试必须有一个A push出B后，在里设置导航栏左边、右边的字时才有效，默認為A的title，若A的title太長，則顯示為Back
     static navigationOptions = ({navigation}) => ({
-        // 设置左边按钮都无效, 必須使用自定義的導航欄
+        // 设置左边按钮都无效，须使用自定义组件
         headerBackTitle: '返回',
         backButtonTitle:"由TestListView Push",
         left: 'left',

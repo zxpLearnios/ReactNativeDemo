@@ -7,7 +7,9 @@
 import React, { Component } from 'react';
 
 import {
-    Button,} from 'react-native';
+    Button,
+    Text,
+} from 'react-native';
 import {
     TabNavigator,
     StackNavigator,
@@ -22,6 +24,8 @@ import LoginPage from '../mine/Login'
 
 import CustomeNavigationBar from '../customeComponents/NavigationBar'
 import  TabBarItem from '../main/TabBarItem'
+import  NavBarItem from '../main/NavBarItem'
+
 
 
 
@@ -29,6 +33,7 @@ import MineDetailPage from '../mine/MineDetail'
 import TestListViewPage from '../mine/TestListView'
 
 
+let navRightItemImg = require('../img/plus.png');
 export  default  class Navigator extends  Component{
 
     render(){
@@ -42,7 +47,7 @@ export  default  class Navigator extends  Component{
     }
 }
 
-
+// 几个table页面
 const AppTab = TabNavigator({
 
         HomePage: {
@@ -96,7 +101,8 @@ const AppTab = TabNavigator({
         // headerMode: 导航栏的显示模式: screen: 有渐变透明效果, float: 无透明效果, none: 隐藏导航栏
         // mode: 页面切换模式: 左右是card(相当于iOS中的push效果), 上下是- - modal(相当于iOS中的modal效果)
 
-    }
+    },
+
 );
 
 
@@ -117,10 +123,15 @@ const AppNavigator = StackNavigator({
 
     TabPage: {
         screen: AppTab,
+
+        // 设置navigation NavBarItem, 使tab页左右都有按钮
+        navigationOptions:{
+            headerLeft: <NavBarItem type={'btn'} onPress={() => alert('点击了left-navigation')}/>,
+            headerRight: <NavBarItem type={'img'} img={navRightItemImg} onPress={() => alert('点击了right-navigation')}/>
+        },
     },
 
 
-    // 此种方式将页面加入导航栈不简便，故不用
     MineDetail:{
         screen: MineDetailPage,
 
@@ -137,7 +148,9 @@ const AppNavigator = StackNavigator({
             // visible: false, // 是否顯示導航欄
         },
 
-    }
+    },
+
+
 });
 
 

@@ -23,8 +23,9 @@ const backAction = NavigationActions.back({
 const  kwidth = Dimensions.get('window').width;
 const kheight = Dimensions.get('window').height; // export
 const saveUserkey = 'saveUserkey=key'; // 不能使用'_'
+const delay = time => new Promise(resolve => setTimeout(resolve, time))
 
-export {kwidth as width, kheight as height, saveUserkey}; // 可以使用as來重命名
+export {kwidth as width, kheight as height, saveUserkey, delay}; // 可以使用as來重命名
 
 /*
 *  resetAction 出栈
@@ -39,19 +40,11 @@ export const resetMainPageAction = NavigationActions.reset({
 
 
 // 第二种方式
-const  Const ={
+// const  Const ={
+//     width: Dimensions.get('window').width,
+//     height: Dimensions.get('window').height,
+// };
 
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height,
-
-};
-
-const  Const1 ={
-
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height,
-
-};
 
 
 

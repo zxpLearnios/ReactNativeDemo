@@ -17,7 +17,6 @@ import {
 // Const的第一种方式  导入constant
 import  * as conster from  '../const/Const' // 导出Const.js里所有的变量和方法
 import MyView from '../nativeComponents/MyView'
-import {Global, }  from '../customeComponents/customeComponents';
 
 
 export default class  Mine extends  Component{
@@ -53,19 +52,20 @@ export default class  Mine extends  Component{
         // this.testSet();
 
         // 测试数据存取
-        let user =   Global.getInfo(conster.saveUserkey).then(user => {
-            alert(user.name)
-        }).catch(err => {
-            switch (err.name) {
-                case 'NotFoundError':
-                    // TODO;
-                    break;
-                case 'ExpiredError':
-                    // TODO
-                    break;
-            }
-            alert('getInfo----error')
-        });
+        // let user =   Global.getInfo(conster.saveUserkey).then(user => {
+        //     alert(user.name)
+        // }).catch(err => {
+        //     switch (err.name) {
+        //         case 'NotFoundError':
+        //             // TODO;
+        //             break;
+        //         case 'ExpiredError':
+        //             // TODO
+        //             break;
+        //     }
+        //     alert('getInfo----error')
+        // });
+
 
     }
 
