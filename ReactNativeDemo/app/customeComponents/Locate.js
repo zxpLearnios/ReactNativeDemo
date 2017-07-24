@@ -43,8 +43,9 @@ export default class Locate extends Component{
                 }
                  resolve(res);
             },
-            error => { // 失败时的回调
+            error => { // 用户拒绝授权\失败时的回调
                 // alert("获取位置失败："+ error)
+                // error.code, error.message
                 reject(error);
             }
         );
