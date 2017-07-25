@@ -39,6 +39,22 @@ export default class  Home extends  Component{
                                 style={styles.input}
                     />
                     <TextInput/>
+
+                    <TextInput  placeholder="自动退键盘" onFocus={(event: Event) => {
+                        // alert(event.target)
+                        // this._scrollToInput(ReactNative.findNodeHandle())
+                    }}
+                                style={styles.input}
+                    />
+                    <TextInput/>
+
+                    <TextInput  placeholder="自动退键盘" onFocus={(event: Event) => {
+                        // alert(event.target)
+                        // this._scrollToInput(ReactNative.findNodeHandle())
+                    }}
+                                style={styles.input}
+                    />
+                    <TextInput/>
                 </View>
 
             </KeyboardAwareScrollView>
@@ -61,10 +77,10 @@ const  styles = StyleSheet.create({
         height: 700,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'red',
     },
 
     input:{
+        marginTop: 50,
         height: 40,
     },
 });

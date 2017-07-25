@@ -34,7 +34,7 @@ export default class  Mine extends  Component{
                     title="跳转"
                     onPress={() =>
                         // this.btnAction
-                        navigate('MineDetail', { info: '由Mine传给其他页面' }) // TestListView   MineDetail
+                        navigate('TestListView', { info: '由Mine传给其他页面' },) // TestListView   MineDetail
                     }
                 />
 

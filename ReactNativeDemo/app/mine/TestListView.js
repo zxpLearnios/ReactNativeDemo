@@ -17,6 +17,8 @@ import {
     ActivityIndicator,
 
 }from 'react-native';
+import ListViewItem from './TestListViewItem'
+let img = require('../img/plus.png');
 
 let isFirst = true; // 是否是首次
 let runNumber = 1; // 循环几次
@@ -31,8 +33,9 @@ var ds = new ListView.DataSource({
 
 let nx = null;
 // 如果不想在滑动过快导致白屏出现，就只能使用 ListView 。而不能使用SectionList 和 FlatList
-export  default  class  TestListView extends  Component{
 
+import * as conster from '../const/Const'
+export  default  class  TestListView extends  Component{
 
     static navigationOptions = ({navigation}) => ({
         title: `${navigation.state.params.info}`,
@@ -52,7 +55,7 @@ export  default  class  TestListView extends  Component{
 
          for (var i=0; i<runNumber; i++){
              for (let j=0; j<5; j++){
-                 title = '第'+i+"组"+'第'+j+"行";
+                 title = title + '第'+i+"组"+'第'+j+"行"+'测试133333';
                  smallAry.push(title)
              }
              bigAry.push(smallAry);
@@ -62,7 +65,7 @@ export  default  class  TestListView extends  Component{
     }
 
     staticDatas={
-        rowDatas: ['这是ListView的Cell', '这是ListView的Cell', '这是ListView的Cell'],
+        rowDatas: ['这是ListView的Cell----1', '这是ListView的Cell-------------------2', '这是ListView的Cell-----3'],
         sectionDatas: this.getDatas(), // [['第一组第0行', '第一组第1行', '第一组第2行'], ['第二组第0行', '第二组第1行', '第二组第2行']],
     }
 
@@ -74,6 +77,7 @@ export  default  class  TestListView extends  Component{
     constructor(props) {
         super(props);
 
+        modeType = 'modal';
         this.state = {
             dataSource: ds.cloneWithRowsAndSections(this.getDatas()), //ds.cloneWithRows(this.staticDatas.rowDatas),
             title: '下拉开始刷新',
@@ -131,6 +135,7 @@ export  default  class  TestListView extends  Component{
     componentDidMount() {
         // const {params} = this.props.navigation.state;
         // alert(params.info)
+        conster.modeType = 'card';
     }
 
     componentWillUnmount() {
@@ -160,13 +165,20 @@ export  default  class  TestListView extends  Component{
     _renderItems(rowData,sectionId,rowId) {
 
         return (
-                <TouchableOpacity activeOpacity={0.7} onPress = {()=>
-                     this.clickItem(rowData,sectionId,rowId) }
-                >
-                    <View style={styles.container}>
-                        <Text style={styles.text}>{rowData}</Text>
-                    </View>
-                </TouchableOpacity>
+            <ListViewItem
+                ref={cell => this.cell = cell}
+                title={rowData}
+                subTitle='zibiaoti'
+                price="价格：100"
+                icon={img}
+                onPress={() => this.clickItem(rowData,sectionId,rowId)} style={styles.container} />
+                // <TouchableOpacity activeOpacity={0.7} onPress = {()=>
+                //      this.clickItem(rowData,sectionId,rowId) }
+                // >
+                //     <View style={styles.container}
+                //         <Text style={styles.text}>{rowData}</Text>
+                //     </View>
+                // </TouchableOpacity>
         );
 
 
@@ -210,7 +222,8 @@ export  default  class  TestListView extends  Component{
     // 测试必须有一个A push出B后，在B里设置导航栏左边、右边的字时才有效
     clickItem = (rowData,sectionId,rowId) => {
         // alert('点击了：'+ sectionId +'组,'+ rowId+'行，' +  '内容：'+rowData);
-        nx('MineDetail')
+        // nx('MineDetail')
+        alert(this.cell.pageX)
     }
 
 

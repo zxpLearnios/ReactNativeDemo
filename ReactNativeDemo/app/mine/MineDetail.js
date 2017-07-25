@@ -34,8 +34,7 @@ import {
     TimerBtn,
     Hud,
 }from '../customeComponents/customeComponents'
-
-import  * as conster from  '../const/Const'
+import * as conster from '../const/Const'
 
 export default  class MineDetail extends  Component{
 
@@ -111,7 +110,7 @@ export default  class MineDetail extends  Component{
 
     //绝对不要在componentWillUpdate和componentDidUpdate中调用this.setState方法，否则将导致无限循环调用。
     componentDidMount(){ // render之后调用,在组件渲染完成后调用一次.
-
+        conster.modeType = 'card';
     }
 
     componentWillUnmount() { //销毁时调用,通常做一些取消绑定
@@ -340,8 +339,10 @@ export default  class MineDetail extends  Component{
         alert('手机号是：' +this.data.phone + '  验证码是：' + this.data.verCode + '  密码是：'+ this.data.pwd);
     }
 
-    loginAction(){
-        alert('登录');
+    loginAction = () => {
+        // alert('登录');
+        const {navigate} = this.props.navigation;
+        navigate('TestListView', { info: '由TestListView传给其他页面' } )
     }
 
     protocolClickAction = () => {

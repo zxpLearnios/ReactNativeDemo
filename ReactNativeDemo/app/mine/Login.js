@@ -52,11 +52,11 @@ export default class Login extends Component{
         // Global.saveInfo(conster.saveUserkey, {name:'zzz', id:'111'})
 
         // locate 定位
-        let location = Locate.getCurrentLocation(res => {
-            alert('经度'+res.longitude+',纬度'+res.latitude);
-        }, err=>{
-            console.log(err);
-        });
+        // let location = Locate.getCurrentLocation(res => {
+        //     alert('经度'+res.longitude+',纬度'+res.latitude);
+        // }, err=>{
+        //     console.log(err);
+        // });
     }
 
     // 使用resetAction，出栈. async await异步操作

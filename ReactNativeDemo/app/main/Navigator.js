@@ -32,6 +32,7 @@ import  NavBarItem from '../main/NavBarItem'
 import MineDetailPage from '../mine/MineDetail'
 import TestListViewPage from '../mine/TestListView'
 
+import  * as conster from  '../const/Const'
 
 let navRightItemImg = require('../img/plus.png');
 export  default  class Navigator extends  Component{
@@ -83,8 +84,8 @@ const AppTab = TabNavigator({
     // 设置 tabbar
     {
         tabBarOptions: {
-            activeTintColor: 'orange',
-            inactiveTintColor: 'gray',
+            activeTintColor: 'orange', // 选中tabItem
+            inactiveTintColor: 'gray', // 普通tabItem
             labelStyle:{fontSize: 12}, // 文字大小
             style: {backgroundColor: '#fff'}, // TabBar 背景色,
         },
@@ -97,10 +98,7 @@ const AppTab = TabNavigator({
 
 
         initialRouteName: 'MinePage', // 默认显示的tab MinePage HomePage
-        backBehavior:'none'
-        // headerMode: 导航栏的显示模式: screen: 有渐变透明效果, float: 无透明效果, none: 隐藏导航栏
-        // mode: 页面切换模式: 左右是card(相当于iOS中的push效果), 上下是- - modal(相当于iOS中的modal效果)
-
+        backBehavior:'none',
     },
 
 );
@@ -123,7 +121,6 @@ const AppNavigator = StackNavigator({
 
     TabPage: {
         screen: AppTab,
-
         // 设置navigation NavBarItem, 使tab页左右都有按钮
         navigationOptions:{
             headerLeft: <NavBarItem type={'btn'} onPress={() => alert('点击了left-navigation')}/>,
@@ -134,11 +131,9 @@ const AppNavigator = StackNavigator({
 
     MineDetail:{
         screen: MineDetailPage,
-
-        navigationOptions:{
+         navigationOptions:{
             headerTitle:'我的详情',
-            // headerBackTitle:'返回我的',
-        },
+         },
 
     },
 
@@ -149,8 +144,9 @@ const AppNavigator = StackNavigator({
         },
 
     },
-
-
+}, {
+    // headerMode: 导航栏的显示模式: screen: 有渐变透明效果, float: 无透明效果, none: 隐藏导航栏
+    // mode: ' ',//页面切换模式: 左右是card(相当于iOS中的push效果), 上下是- -  (相当于iOS中的 效果)
 });
 
 

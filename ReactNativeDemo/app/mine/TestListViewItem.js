@@ -1,3 +1,5 @@
+// 可以自适应高度
+
 import React, { Component } from 'react';
 import {
   View,
@@ -8,9 +10,7 @@ import {
   Dimensions,
 } from 'react-native';
 
-
-import  * as conster from  '../const/Const'
-
+import * as conster from '../const/Const'
 
 export default class CommonItem extends Component {
 
@@ -22,7 +22,7 @@ export default class CommonItem extends Component {
 
         <TouchableOpacity
           style={styles.rootViewStyle}
-          onPress = {() => this.props.onPress}
+          onPress = {this.props.onPress}
         >
           <Image
             source={this.props.icon}
@@ -31,20 +31,18 @@ export default class CommonItem extends Component {
           />
           <View style={styles.rightViewStyle}>
             <Text style={styles.titleStyle}
-            >{this.props.title}</Text>
+            >{this.props.title||''}</Text>
 
             <Text style={styles.subtitleStyle}
-            >{this.props.subtitle}</Text>
+            >{this.props.subTitle||''}</Text>
 
-            <Text style={styles.priceStyle}>{this.props.price}</Text>
+            <Text style={styles.priceStyle}>{this.props.price||''}</Text>
           </View>
         </TouchableOpacity>
     );
   }
 
     componentDidMount(){
-
-
     }
 
 
@@ -71,9 +69,8 @@ const styles = StyleSheet.create({
   // 主轴为行，则次轴即为列，反义异然
   rightViewStyle: {
     backgroundColor: 'lightgray',
-    justifyContent: 'space-between',
     paddingLeft: 20,
-    height: conster.width / 4,
+    // height: conster.width / 4,
     flex: 1,
 
   },
@@ -82,14 +79,14 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 13,
     marginTop: 10,
-
+    backgroundColor: 'red',
   },
 
   subtitleStyle: {
     backgroundColor: 'white',
     fontSize: 12,
     color: 'gray',
-    marginTop: -5,
+    marginTop: 5,
   },
 
   priceStyle: {
@@ -99,9 +96,8 @@ const styles = StyleSheet.create({
       // position: 'absolute',
       // bottom: 3,
       // left: 20,
-
-    // marginBottom: 10,
-      bottom: 10,
+      marginTop: 30,
+      marginBottom: 10,
   },
 
 

@@ -25,7 +25,8 @@ const kheight = Dimensions.get('window').height; // export
 const saveUserkey = 'saveUserkey=key'; // 不能使用'_'
 const delay = time => new Promise(resolve => setTimeout(resolve, time))
 
-export {kwidth as width, kheight as height, saveUserkey, delay}; // 可以使用as來重命名
+let modeType = '';
+export {kwidth as width, kheight as height, saveUserkey, delay, modeType}; // 可以使用as來重命名
 
 /*
 *  resetAction 出栈
