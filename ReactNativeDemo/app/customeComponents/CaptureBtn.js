@@ -46,7 +46,6 @@ export default class  TimerBtn extends  Component{
 
     };
 
-    // 必须写在非render（）里
     state={
         isStart: false,
         disabled: this.props.disabled || true, // 默认不可点击

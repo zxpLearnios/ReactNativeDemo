@@ -25,7 +25,7 @@ const kheight = Dimensions.get('window').height; // export
 const saveUserkey = 'saveUserkey=key'; // 不能使用'_'
 const delay = time => new Promise(resolve => setTimeout(resolve, time))
 
-let modeType = '';
+let modeType = 'card';
 export {kwidth as width, kheight as height, saveUserkey, delay, modeType}; // 可以使用as來重命名
 
 /*
@@ -48,6 +48,11 @@ export const resetMainPageAction = NavigationActions.reset({
 
 
 
+// function delay(timeout) {
+//     return new Promise((resolve) => {
+//         setTimeout(resolve, timeout);
+//     });
+// }
 
 
 

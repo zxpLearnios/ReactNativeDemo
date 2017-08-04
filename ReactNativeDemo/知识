@@ -19,6 +19,8 @@ webstorm里所有的类出现红色时，说明时git的配置出现了问题，
    |componentWillUpdate|>=0|否|
    |componentDidUpdate|>=0|否|
    |componentWillUnmount|1|否|
+
+6.  if (**** === undefined){ // 未定义时
 */
 
 

@@ -107,7 +107,7 @@ export  default class  EyeBtn extends  Component{
         });
 
         // 注意这2种方法的区别
-        this.props.cliclkCallBack() && this.props.cliclkCallBack;
+        this.props.cliclkCallBack() && this.props.cliclkCallBack; // 不论propTypes里声明与否都得这样写
         // EyeBtn.propTypes.cliclkCallBack && this.props.cliclkCallBack(); // 执行外部的方法
     }
 

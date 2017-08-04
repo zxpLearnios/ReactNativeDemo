@@ -22,6 +22,7 @@ import CustomeNavigationBar from '../customeComponents/NavigationBar'
 import  * as conster from  '../const/Const' // 导出Const.js里所有的变量和方法
 
 import {Global,Locate }  from '../customeComponents/customeComponents';
+import Requst from '../serve/Request'
 
 export default class Login extends Component{
 
@@ -46,7 +47,7 @@ export default class Login extends Component{
     }
 
     componentDidMount(){
-        conster.width = 200;
+        // conster.width = 200;
 
         // 测试存储
         // Global.saveInfo(conster.saveUserkey, {name:'zzz', id:'111'})
@@ -57,11 +58,14 @@ export default class Login extends Component{
         // }, err=>{
         //     console.log(err);
         // });
+
+        // 获取时间
+         // alert(Requst.getCurrentDate());
     }
 
     // 使用resetAction，出栈. async await异步操作
     async loadHomePage(){
-        await conster.delay(2 * 1000);
+        // await conster.delay(2 * 1000);
         this.props.navigation.dispatch(conster.resetMainPageAction)
     }
 

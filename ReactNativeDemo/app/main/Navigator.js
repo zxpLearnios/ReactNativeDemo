@@ -31,6 +31,7 @@ import  NavBarItem from '../main/NavBarItem'
 
 import MineDetailPage from '../mine/MineDetail'
 import TestListViewPage from '../mine/TestListView'
+import GesturePwdPage from '../customeComponents/GesturePwd'
 
 import  * as conster from  '../const/Const'
 
@@ -112,7 +113,6 @@ const AppTab = TabNavigator({
 *
 * */
 const AppNavigator = StackNavigator({
-
     // 登录的导航栏在LoginPage设置
     LoginPage:{
         screen: LoginPage,
@@ -144,9 +144,12 @@ const AppNavigator = StackNavigator({
         },
 
     },
+    GesturePwd:{
+        screen: GesturePwdPage,
+    },
 }, {
     // headerMode: 导航栏的显示模式: screen: 有渐变透明效果, float: 无透明效果, none: 隐藏导航栏
-    // mode: ' ',//页面切换模式: 左右是card(相当于iOS中的push效果), 上下是- -  (相当于iOS中的 效果)
+    mode: this.modeType,//页面切换模式: 左右是card(相当于iOS中的push效果), 上下是- -  (相当于iOS中的 效果)
 });
 
 

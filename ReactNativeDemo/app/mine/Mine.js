@@ -9,14 +9,16 @@ import {
     Button,
     View,
     StyleSheet,
-
 }from 'react-native';
-
+import {
+    StackNavigator,
+}from 'react-navigation';
 
 
 // Const的第一种方式  导入constant
 import  * as conster from  '../const/Const' // 导出Const.js里所有的变量和方法
 import MyView from '../nativeComponents/MyView'
+import GesturePwd from '../customeComponents/GesturePwd'
 
 
 export default class  Mine extends  Component{
@@ -24,18 +26,14 @@ export default class  Mine extends  Component{
 
 
     render(){
-
-        const { navigate } = this.props.navigation;
-
+        const {navigate} = this.props.navigation;
         return (
             <View style={styles.container}>
 
                 <Button
                     title="跳转"
                     onPress={() =>
-                        // this.btnAction
-                        navigate('TestListView', { info: '由Mine传给其他页面' },) // TestListView   MineDetail
-                    }
+                        this.goToPage(navigate)}
                 />
 
                 <MyView
@@ -46,6 +44,21 @@ export default class  Mine extends  Component{
 
 
         )
+    }
+
+    goToPage(navigate){
+        // let nav = StackNavigator({
+        //
+        //     // 登录的导航栏在LoginPage设置
+        //     GesturePwdPage: {
+        //         screen: GesturePwd,
+        //         // navigationOptions:  CustomeNavigationBar('wetft'), // 测试自定义的导航栏
+        //     }
+        // },{
+        //     mode: 'modal',
+        // });
+
+        navigate('GesturePwd', {info: '有Mine传给你的'}) // GesturePwd  TestListView  MineDetail
     }
 
     componentDidMount(){

@@ -23,6 +23,7 @@ module.exports = require('./Navigator');
 // 其他，非3
 // const invariant = require('fbjs/lib/invariant');
 
-
+// 方式4
+// import Navigator from './Navigator'; // 必须在Navigator里注册Navigator
 
 

@@ -361,7 +361,7 @@ export default  class MineDetail extends  Component{
         //     // { cancelable: false }
         // )
 
-        // this.hud.open();
+        this.hud.open();
 
 
         // for (item in this.refs) {

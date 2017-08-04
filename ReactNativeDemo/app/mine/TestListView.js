@@ -186,7 +186,7 @@ export  default  class  TestListView extends  Component{
 
 
     _onScroll(scroller){
-
+        // 获取滚动 偏移量
         let offsetY =  scroller.nativeEvent.contentOffset.y;
         if (offsetY < 50){
             this.setState({
