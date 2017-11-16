@@ -9,6 +9,8 @@ import {
     Button,
     View,
     StyleSheet,
+    Picker,
+    DeviceEventEmitter, // 通知
 }from 'react-native';
 import {
     StackNavigator,
@@ -23,17 +25,31 @@ import GesturePwd from '../customeComponents/GesturePwd'
 
 export default class  Mine extends  Component{
 
+    onTransitionEnd
+    constructor(props){
+        super(props);
+        this.state={
+            useFunc: true,
+        }
+    }
 
 
     render(){
         const {navigate} = this.props.navigation;
+        if (this.state.useFunc){
+            this.consoleFunc()
+        }
+
         return (
             <View style={styles.container}>
 
                 <Button
                     title="跳转"
                     onPress={() =>
-                        this.goToPage(navigate)}
+                        // this.goToPage(navigate)
+                        this.renderPicker()
+                    }
+
                 />
 
                 <MyView
@@ -61,6 +77,17 @@ export default class  Mine extends  Component{
         navigate('GesturePwd', {info: '有Mine传给你的'}) // GesturePwd  TestListView  MineDetail
     }
 
+    renderPicker(){
+
+        return (
+            <Picker >
+
+                <Picker.Item label='Android' value='Android'/>
+                <Picker.Item label='React-native' value='React-native'/>
+            </Picker>
+        );
+    }
+
     componentDidMount(){
         // this.testSet();
 
@@ -79,6 +106,25 @@ export default class  Mine extends  Component{
         //     alert('getInfo----error')
         // });
 
+
+        // setInterval( () => {
+        //     this.setState({});
+        // }, 2000);
+
+        // this.lisenter = DeviceEventEmitter.addEventListener('eventName', () => ('收到通知后触发的方法'))
+        // 在其他地方发通知
+        // DeviceEventEmitter.emit('eventName', params);
+
+    }
+
+    componentWillUnmount(){
+        // 移除对通知的观察
+        // this.lisenter.remove()
+    }
+
+    consoleFunc(){
+        // console.log('实现进入页面就会触发某方法一次')
+        console.log('Mine----componentDidMount---'+this.props.navigation.state.routeName)
 
     }
 

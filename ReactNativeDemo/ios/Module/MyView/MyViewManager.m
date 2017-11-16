@@ -53,6 +53,11 @@ RCT_EXPORT_MODULE();
 
 //-------------------- 1 导出属性 ---------------//
 
+// 也可以这样导出属性给rn，且在原生类里无须写set方法
+//RCT_EXPORT_VIEW_PROPERTY(bgForLabel, UIColor, MyView){
+//  view.bgLabCl = bgForLabel;
+//}
+
 RCT_EXPORT_VIEW_PROPERTY(bgForLabel, UIColor);
 // 将.h里 声明的 block 作为属性 暴露给rn
 RCT_EXPORT_VIEW_PROPERTY(onClickButtonBlock, RCTBubblingEventBlock);
@@ -69,7 +74,7 @@ RCT_EXPORT_METHOD(sendInfoToNative:(NSString *)info){
   if (!nativeView) {
     return;
   }
-  // kvo设置后，不管怎么做都是无效的
+  // 使用kvo设置不管怎么做都是无效的
 //  [nativeView setValue:info forKeyPath:@"lab"];
   nativeView.labText = info;
 }

@@ -99,7 +99,7 @@ const AppTab = TabNavigator({
 
 
         initialRouteName: 'MinePage', // 默认显示的tab MinePage HomePage
-        backBehavior:'none',
+        backBehavior:'none',  // 回调
     },
 
 );
@@ -150,6 +150,8 @@ const AppNavigator = StackNavigator({
 }, {
     // headerMode: 导航栏的显示模式: screen: 有渐变透明效果, float: 无透明效果, none: 隐藏导航栏
     mode: this.modeType,//页面切换模式: 左右是card(相当于iOS中的push效果), 上下是- -  (相当于iOS中的 效果)
+    // onTransitionStart: ()=>{ console.log('导航栏切换开始'); },  // 回调
+    // onTransitionEnd: ()=>{ console.log('导航栏切换结束'); }
 });
 
 

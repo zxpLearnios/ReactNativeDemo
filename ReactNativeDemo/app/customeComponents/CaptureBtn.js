@@ -133,7 +133,7 @@ export default class  TimerBtn extends  Component{
                     isRunning = true;
                     let totalTime = this.state.totalCount;
 
-                    this.setState({
+                        this.setState({
                         disabled: true,
                         totalCount: totalTime - 1,
                     });

@@ -21,6 +21,22 @@ webstorm里所有的类出现红色时，说明时git的配置出现了问题，
    |componentWillUnmount|1|否|
 
 6.  if (**** === undefined){ // 未定义时
+
+7. ScrollerView的contentContainerStyle
+
+8. reactnative打印一个对象 完整的打印对象。
+        let tmp = '';
+        for(var i in dataObj){
+            tmp += i+":"+dataObj[i]+"\t";
+        }
+        console.log('getPreAppMainList'+tmp)
+
+        console.log('测试'+dic)
+
+            console.log('测试', obj)
+
+9.
+10.
 */
 
 

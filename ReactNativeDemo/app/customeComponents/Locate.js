@@ -14,7 +14,7 @@ Android
 
 import  React, {Component, } from 'react';
 var Geolocation = require('Geolocation');
-
+let gdWebServeKey = ''; // 高德地图 web服务，逆地理编码key
 
 
 export default class Locate extends Component{
@@ -42,6 +42,9 @@ export default class Locate extends Component{
                     latitude: location.coords.latitude, // 纬度
                 }
                  resolve(res);
+
+                // 逆地理编码
+                this.fetchAds('116.481488', '39.990464')
             },
             error => { // 用户拒绝授权\失败时的回调
                 // alert("获取位置失败："+ error)
@@ -76,6 +79,33 @@ export default class Locate extends Component{
         this.clearWatch(this.watchID);
     }
 
+    //--------  private -----//
+    static fetchAds = (longitude,latitude) => {
+        fetch( 'http://restapi.amap.com/v3/geocode/regeo?key=0ab2b51e06c5b76ef226a52c42f9c51c&location='+longitude+','+latitude)
+            .then( response => response.json()
+            )
+            .then( responseBody => { // regeocode.formatted_address 全地址
+                console.log(responseBody);
+                console.log(responseBody.regeocode.addressComponent.province);
+                let city = responseBody.regeocode.addressComponent.province;
+                let district = responseBody.regeocode.addressComponent.district;
+                let township = responseBody.regeocode.addressComponent.township;
+
+                if(responseBody.status ==1){
+                    // this.setState({
+                    //     city:city,
+                    //     district:district,
+                    //     township:township,
+                    // })
+
+                    alert('具体地址为'+city+district+township);
+                }else {
+                    let res = '定位失败';
+                }
+            }).catch((error)=>{
+            alert('=='+error);
+        })
+    };
 }
 
 

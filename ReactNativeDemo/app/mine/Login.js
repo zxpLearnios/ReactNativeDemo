@@ -54,13 +54,18 @@ export default class Login extends Component{
 
         // locate 定位
         // let location = Locate.getCurrentLocation(res => {
-        //     alert('经度'+res.longitude+',纬度'+res.latitude);
+        //     // alert('经度'+res.longitude+',纬度'+res.latitude);
         // }, err=>{
         //     console.log(err);
         // });
 
         // 获取时间
          // alert(Requst.getCurrentDate());
+
+        // 重新
+        
+
+
     }
 
     // 使用resetAction，出栈. async await异步操作
